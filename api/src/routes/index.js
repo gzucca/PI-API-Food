@@ -1,6 +1,6 @@
 const express = require('express');
-
-const { getRecipesFromApi, getRecipesFromDB, getAllRecipes } = require('./controllers.js');
+const {Recipe, Diet} = require('../db');
+const { getAllRecipes, getAllDiets } = require('./controllers.js');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -16,57 +16,70 @@ router.get('/recipes', async (req, res) => {
     try {
         if(name){
             let recipes = await allRecipes.filter(recip => recip.name.toLowerCase().includes(name.toLowerCase()));
-            recipes.length ? 
-            res.status(200).send(recipes) :
+            if (recipes.length > 0) {
+                let recipesFiltered = recipes.map((recip) => {
+                    return {
+                    name: recip.name,
+                    image: recip.image,
+                    diets: recip.diets
+                    } 
+                })
+                res.status(200).send(recipesFiltered)
+            } else {
             res.status(404).send('No existe ninguna receta con ese nombre.');
-        }
-    } catch (e) {
-        res.send(e);
+        }}  else {
+            res.status(200).send(allRecipes) 
+        }          
+    }
+    catch (e) {
+        res.status(404).send(e.message);
     }
 });
 
 router.get('/recipes/:id', async (req, res) => {
-    let {id} = (req.params);
-    console.log(id);    
+    let {id} = (req.params);    
     const allRecipes = await getAllRecipes();
     try {
         if(id){
             let recipes = await allRecipes.filter(recip => recip.id === Number(id));
-            console.log(recipes);
             recipes.length ? 
             res.status(200).send(recipes) :
             res.status(404).send('No existe ninguna receta con ese ID.');
         }
     } catch (e) {
-        res.send(e);
+        res.status(404).send(e.message);
     }
 });
 
-// router.post('recipes', async (req, res) => {
-//     const {name, summary, healthScore, steps, diets} = req.body;
-//     try {
-//         const newRecipe = await Recipe.create({
-//             name,
-//             summary,
-//             healthScore,
-//             steps,
-//             diets
-//     })
-//     res.json(newRecipe);
-//     } catch (e) {
-//         res.send(e);
-//     }
-// })
+router.post('/recipes', async (req, res) => {
+    const {name, summary, healthScore, steps, diets} = req.body;
+    try {
+        const newRecipe = await Recipe.create({
+            name,
+            summary,
+            healthScore,
+            steps,
+            diets
+    })
+    res.status(200).send(newRecipe);
+    } catch (e) {
+        res.status(404).send(e.message);
+    }
+})
 
-// router.get('diets', async (req, res) => {
-//     const {id} = req.params;
-//     try {
-//         const recipeDetail = await Recipe.findByPk(id);
-//         const recipeDiets = await RecipeDiet.findByPk(id);
-//         res.json(recipeDetail.length > 0? recipeDetail + recipeDiets : 'No existe ninguna receta con ese ID.');
-//     } catch (e) {
-//         res.send(e);
-//     }
-// })
+router.get('/diets', async (req, res) => {
+    try {
+        const allDiets = await getAllDiets();
+        allDiets.forEach( (diet) => {
+            Diet.findOrCreate({
+                where: {name : diet},
+            })
+        })
+        const showDiets = await Diet.findAll();
+        res.status(200).send(showDiets)
+    } catch (e) {
+        res.status(404).send(e.message);
+    }
+})
 
 module.exports = router;

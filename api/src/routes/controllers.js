@@ -7,25 +7,32 @@ const myJson = require ("../../complexSearch.json");
 //traemos todas las recetas de la API
 
 
-const getRecipesFromApi =  () => {
-    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=true&addRecipeInformation=true`)
-    const recipesFromApi = myJson
-    
-    // const dataRecipesApi = recipesFromApi.data.results;
-    const dataRecipesApi = recipesFromApi.results;
-
-    const resultadosApi = dataRecipesApi.map((recip) => {
+const getRecipesFromApi = async () => {
+    const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
+    // const recipesFromApi = myJson
+    const dataRecipesApi = recipesFromApi.data.results;
+    // const dataRecipesApi = recipesFromApi.results;
+    const resultsApi = dataRecipesApi.map((recip) => {
         return {
             id: recip.id,
             name: recip.title,
             summary: recip.summary,
+            diets: recip.diets,
             healthScore: recip.healthScore,
-            // steps: recip.steps.map(step => return step)
+            image: recip.image,
+            steps: recip.analyzedInstructions.map((steps) => {
+                return steps.steps.map((step) => { 
+                    let stepNumber = step.number;
+                    let stepText = step.step;
+                    return (stepNumber + ": "+ stepText)
+                })
+            }),
+
         }
     })
 
-
-    return resultadosApi;
+    // console.log(resultadosApi);
+    return resultsApi;
 };
 
 
@@ -41,22 +48,39 @@ const getRecipesFromDB = async () => {
     });
 };
 
-// const getRecipesFromDB = async () => {
-//     const recipes = await Recipe.create({
-//         id,
-//         name: 'rice',
-//         summary: 'una sopita',
-//         healthScore: 5,
-//         steps: 'paso 1 paso 2',
-//         image: 'imagen',
-//         createdRecipe: true,
-//     });
-//     if(recipes.length === 0){
-//         return 'No se encontró nada'
-//     }
-//     return recipes
+const getAllDiets = async () => {
+    // const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
+    const dietsFromApi = myJson
+    // const dataDietsApi = dietsFromApi.data.results;
+    const dataDietsApi = dietsFromApi.results;
+    // console.log(dataRecipesApi);
+    const resultsApi = dataDietsApi.map((recip) => {
+        return {
+            diets: recip.diets,
+        }
+    })
 
-// };
+    const dietsArrays = resultsApi.map((e) => {
+        return e.diets
+    })
+
+    let dietsOneArray = dietsArrays.flat(1)
+
+    let diets = [];
+
+    for (let i = 0; i < dietsOneArray.length; i++) {
+        const diet = dietsOneArray[i];
+        if (diets.includes(diet) === false) {
+        diets.push(diet)
+        }
+    }
+
+    // console.log("Total de dietas:", diets);
+
+
+    return diets;
+};
+
 
 const getAllRecipes = async () => {
     const recipesFromApi = await getRecipesFromApi();
@@ -67,29 +91,8 @@ const getAllRecipes = async () => {
 };
 
 
-// const getRecipeDetailFromApi = async (id) => {
-//     const RecipeDetailFromApi = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_key}&includeNutrition=true.`)
-//     console.log('Respuesta api:', RecipesFromApi);
-//     const dataRecipeDetailApi = dataRecipeDetailApi.data;
-//     //console.log('recorte api', dataRecipesApi);
-//     const data = dataRecipeDetailApi.map(recip => {
-//         return {
-//             id: recip.id,
-//             name: recip.name,
-//             dishTypes: recip.dishTypes.map(dish => dish),
-//             diets: recip.diets.map(diet => diet),
-//             summary: recip.summary,
-//             healthScore: recip.healthScore,
-//             steps: recip.steps.map(step => step),
-//             image: recip.image
-//         }
-//     })
-//     //console.log('soy la nueva data recortada', data);
-//     return data;
-// };
 
 module.exports = {
-    getRecipesFromApi,
-    getRecipesFromDB,
     getAllRecipes,
+    getAllDiets,
 }
