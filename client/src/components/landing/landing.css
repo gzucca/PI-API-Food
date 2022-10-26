@@ -1,0 +1,12 @@
+.landingPage {
+    background-image: url("../../clientBackground.png");
+    height: 100vh;
+}
+
+.landingPage h1 {
+    margin-top: 0px;
+    position: absolute;
+    top: 30vh; left: 40px;
+    background-color: white;
+    border-radius: 10px;
+}
