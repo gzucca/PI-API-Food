@@ -12,7 +12,7 @@ function App() {
 
         <Route exact path="/" component={LandingPage} />
 
-        {/* <Route exact path="/recipes" component={Home} /> */}
+        <Route exact path="/recipes" component={Home} />
 {/* 
           <Nav />
 

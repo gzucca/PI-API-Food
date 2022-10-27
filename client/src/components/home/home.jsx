@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import './home.css';
 
 
-const Home = () => {
+class Home extends React.Component {
+    
 
+
+    render() {
     return (
         <div>
 
@@ -12,6 +15,7 @@ const Home = () => {
             
         </div>
     );
+    }
 };
 
 export default Home;
