@@ -7,11 +7,11 @@ const myJson = require ("../../complexSearch.json");
 //traemos todas las recetas de la API
 
 
-const getRecipesFromApi = async () => {
-    const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
-    // const recipesFromApi = myJson
-    const dataRecipesApi = recipesFromApi.data.results;
-    // const dataRecipesApi = recipesFromApi.results;
+const getRecipesFromApi =  () => {
+    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
+    const recipesFromApi = myJson
+    // const dataRecipesApi = recipesFromApi.data.results;
+    const dataRecipesApi = recipesFromApi.results;
     const resultsApi = dataRecipesApi.map((recip) => {
         return {
             id: recip.id,

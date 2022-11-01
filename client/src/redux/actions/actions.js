@@ -1,10 +1,36 @@
 
-export const getAllRecipes = () => { 
+export const GET_ALL_RECIPES = 'GELL_ALL_RECIPES';
+
+export const GET_ALL_DIETS = 'GET_ALL_DIETS';
+
+export const FILTER_RECIPE_DIETS = 'FILTER_RECIPE_DIETS';
+
+
+
+export const getAllRecipes = (name) => { 
     return function (dispatch) {
+        if (name) {
+            return fetch(`http://localhost:3001/recipes?name=${name}`)
+            .then(res => res.json())
+            .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
+        else {
         return fetch("http://localhost:3001/recipes")
         .then(res => res.json())
-        .then(data => dispatch({ type: 'GET_ALL_RECIPES', payload: data }))
+        .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
     }
+};
+
+
+export const getAllDiets = () => { 
+    return function (dispatch) {
+        return fetch("http://localhost:3001/diets")
+        .then(res => res.json())
+        .then(data => dispatch({ type: GET_ALL_DIETS, payload: data }))}
+    
+};
+
+export const filterRecipeDiets = (payload) => { 
+    return { type: FILTER_RECIPE_DIETS, payload: payload }
 };
 
 // export const getMovieDetail = (id) => { 

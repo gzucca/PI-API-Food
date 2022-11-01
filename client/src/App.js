@@ -12,11 +12,10 @@ function App() {
 
         <Route exact path="/" component={LandingPage} />
 
-        <Route exact path="/recipes" component={Home} />
+        <Route exact path="/home" component={Home} />
 {/* 
-          <Nav />
 
-          <Route path="/movie/:id" prop component={MovieDetail} />
+        <Route path="/movie/:id" prop component={MovieDetail} />
 
           <Route path="/movies/create" component={CreateMovie} /> */}
         

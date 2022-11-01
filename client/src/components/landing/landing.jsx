@@ -8,8 +8,8 @@ const LandingPage = () => {
     return (
         <div className="landingPage">
 
-            <Link to={`/recipes/`}>
-                <h1>A HOME</h1>
+            <Link to={`/home/`}>
+                <h1>HOME</h1>
             </Link>
             
         </div>
