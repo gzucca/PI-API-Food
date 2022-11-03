@@ -1,4 +1,4 @@
-import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, SORT_BY_NAME } from "../actions/actions";
+import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, SORT_RECIPES } from "../actions/actions";
 
 
 const initialState = {
@@ -28,17 +28,37 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_RECIPE_DIETS:
             const allRecipes = state.allRecipes
             const dietsFiltered = allRecipes.filter(recip => recip.diets.includes(action.payload))
+
             return {
             ...state,
             recipes: dietsFiltered
         }
 
-        case SORT_BY_NAME:
-            const sortedRecipes = state.recipes.filter(recip => recip.diets.includes(action.payload))
-            return {
+        case SORT_RECIPES:
+            const orderByName =
+            action.payload === "asc"
+              ? state.recipes.sort((a, b) => {
+                  if (a.name === b.name) {
+                    return 0;
+                  }
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  return 1;
+                })
+              : state.recipes.sort((a, b) => {
+                  if (a.name === b.name) {
+                    return 0;
+                  }
+                  if (a.name < b.name) {
+                    return 1;
+                  }
+                  return -1;
+                });
+          return {
             ...state,
-            recipes: sortedRecipes
-        }
+            recipes: orderByName,
+          };
         
 
         // case DELETE_MOVIE:
@@ -57,7 +77,9 @@ const rootReducer = (state = initialState, action) => {
             return { 
             ...state 
         } 
+
     }
+
 };
 
 

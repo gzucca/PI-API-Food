@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllDiets, filterRecipeDiets, getAllRecipes } from "../../redux/actions/actions";
+import { getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes } from "../../redux/actions/actions";
 import NavBar from "../navBar/navBar";
 import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
@@ -15,8 +15,8 @@ export class Home extends React.Component {
         this.state = {
             diets: [],
             visibility : false,
-            healthScoreSort : true,
-            alphabeticallySort : true,
+            healthScoreSort : 'hScoreUp',
+            alphabeticallySort : 'alphaUp',
             currentPage : 1,
             cardsPerPage : 6,
             indexOfLastCard : "",
@@ -102,7 +102,7 @@ export class Home extends React.Component {
         e.preventDefault();
         
         setTimeout( () => {  
-            this.props.filterRecipeDiets(e.target.value);;
+            this.props.filterRecipeDiets(e.target.value);
         }, 100);
         
     };
@@ -112,35 +112,12 @@ export class Home extends React.Component {
         this.setState({visibility: !this.state.visibility})
     }
 
-    changeSorts(e) {
-        switch (e.target.value) {
-            case 'alphaUp':
-                this.setState({alphabeticallySort: true})
-                break;
-                //Statements executed when the
-                //result of expression matches value1
-                
-            case 'alphaDown':
-                this.setState({alphabeticallySort: false})
-                break;
-                //Statements executed when the
-                //result of expression matches value2
-                
-                
-            case 'hScoreUp':
-                this.setState({healthScoreSort: true})
-                break;
-                //Statements executed when the
-                //result of expression matches valueN
-                
-            case 'hScoreDown':
-                this.setState({healthScoreSort: false})
-                break;
-            
-            default:
-                console.log("No se realizaron cambios");
-        }
-            
+    handleSorts(e) {
+        e.preventDefault();
+        this.props.sortRecipes(e.target.value)
+        this.setState({currentPage: 1})
+        this.setState({alphabeticallySort: e.target.value})
+        
     }
 
 
@@ -168,15 +145,15 @@ export class Home extends React.Component {
                 <button onClick={() => this.toggleMenu()}>Ordenar</button>
                 <ul  style={{"display": this.state.visibility ? 'inline' : 'none', "listStyleType": "none"}}>
                     <li> Por nombre </li>
-                        <select name='alphabetically'>
-                            <option value="alphaUp" onClick={(e) => this.changeSorts(e)}>Ascendiente</option>
-                            <option value="alphaDown" onClick={(e) => this.changeSorts(e)}>Descendiente</option>
+                        <select onChange={(e) => this.handleSorts(e)} name='alphabetically'>
+                            <option value="asc" >Ascendiente</option>
+                            <option value="desc" >Descendiente</option>
                         </select>
-                    <li> Por Health Score </li>
-                        <select name='healthScore'>
-                            <option value="hScoreUp" onClick={(e) => this.changeSorts(e)}>Ascendiente</option>
-                            <option value="hScoreDown" onClick={(e) => this.changeSorts(e)}>Descendiente</option>
-                        </select>
+                    {/* <li> Por Health Score </li>
+                        <select  onChange={(e) => this.HandleSorts(e)} name='healthScore'>
+                            <option value="hScoreUp" >Ascendiente</option>
+                            <option value="hScoreDown" >Descendiente</option>
+                        </select> */}
                 </ul>
 
                 <div>
@@ -216,4 +193,4 @@ function mapStateToProps(state) {
 //     }
 // }
 
-export default connect(mapStateToProps, {getAllDiets, filterRecipeDiets, getAllRecipes})(Home);
+export default connect(mapStateToProps, {getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes})(Home);
