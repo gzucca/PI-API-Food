@@ -28,37 +28,33 @@ const rootReducer = (state = initialState, action) => {
         case FILTER_RECIPE_DIETS:
             const allRecipes = state.allRecipes
             const dietsFiltered = allRecipes.filter(recip => recip.diets.includes(action.payload))
-
             return {
             ...state,
             recipes: dietsFiltered
         }
 
         case SORT_RECIPES:
-            const orderByName =
-            action.payload === "asc"
-              ? state.recipes.sort((a, b) => {
-                  if (a.name === b.name) {
-                    return 0;
-                  }
-                  if (a.name < b.name) {
-                    return -1;
-                  }
-                  return 1;
-                })
-              : state.recipes.sort((a, b) => {
-                  if (a.name === b.name) {
-                    return 0;
-                  }
-                  if (a.name < b.name) {
-                    return 1;
-                  }
-                  return -1;
-                });
-          return {
+            const sortedRecipes = state.recipes
+            if (action.payload === 'alphaUp') {
+                sortedRecipes.sort((a, b) => a.name.localeCompare(b.name))
+            }
+
+            if (action.payload === 'alphaDown') {
+                sortedRecipes.sort((a, b) => b.name.localeCompare(a.name))
+            }
+
+            if (action.payload === 'hScoreUp') {
+                sortedRecipes.sort((a, b) => a.healthScore - b.healthScore )
+            }
+
+            if (action.payload === 'hScoreDown') {
+                sortedRecipes.sort((a, b) => b.healthScore - a.healthScore )
+            }
+
+            return {
             ...state,
-            recipes: orderByName,
-          };
+            recipes: sortedRecipes
+        }
         
 
         // case DELETE_MOVIE:
@@ -77,9 +73,7 @@ const rootReducer = (state = initialState, action) => {
             return { 
             ...state 
         } 
-
     }
-
 };
 
 

@@ -15,8 +15,7 @@ export class Home extends React.Component {
         this.state = {
             diets: [],
             visibility : false,
-            healthScoreSort : 'hScoreUp',
-            alphabeticallySort : 'alphaUp',
+            sort : '',
             currentPage : 1,
             cardsPerPage : 6,
             indexOfLastCard : "",
@@ -40,45 +39,28 @@ export class Home extends React.Component {
         this.setState({indexOfFirstCard: (this.state.indexOfLastCard - this.state.cardsPerPage)})
     }
 
-
     componentDidMount(){
         this.props.getAllRecipes();
-        this.indexOfLastCard();
+        this.props.getAllDiets();
         setTimeout(() => {
-            this.indexOfFirstCard();
-            this.currentCards()
-        }, 100);
+            this.setState({diets : this.props.diets})
+        }, 200);
     }
 
     componentDidUpdate(prevProps, prevState){
-        console.log('Se actualizó el componente');
-
-        if (prevState.currentPage !== this.state.currentPage) {
+        if (prevState.currentPage !== this.state.currentPage || prevProps.recipes !== this.props.recipes || prevState.sort !== this.state.sort) {
             this.indexOfLastCard();
             setTimeout(() => {
                 this.indexOfFirstCard();
                 this.currentCards()
             }, 100);
-
-        }
-
-        if (prevProps.recipes !== this.props.recipes) {
-            this.indexOfLastCard();
-            setTimeout(() => {
-                this.indexOfFirstCard();
-                this.currentCards()
-            }, 100);
-
         }
     }
 
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [cardsPerPage, setCardsPerPage] = useState(6);
-    
-    // const indexOfLastCard = currentPage * cardsPerPage;
-    // const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    // const currentCards = recipes.slice(indexOfFirstCard, indexOfLastCard);
-
+    loadAllRecipes(e) {
+        e.preventDefault();
+        this.props.getAllRecipes()
+    };
     
     displayDiets(e) {
         e.preventDefault();
@@ -88,7 +70,7 @@ export class Home extends React.Component {
             this.props.getAllDiets()
             setTimeout( () => {
                 this.setState({diets : this.props.diets})
-            }, 400);
+            }, 500);
             
         } 
         
@@ -106,35 +88,31 @@ export class Home extends React.Component {
         }, 100);
         
     };
-
+    
+    handleSorts(e) {
+        e.preventDefault();
+        this.props.sortRecipes(e.target.value)
+        this.setState({currentPage: 1})
+        this.setState({sort: e.target.value})
+        
+    }
     
     toggleMenu() {
         this.setState({visibility: !this.state.visibility})
     }
 
-    handleSorts(e) {
-        e.preventDefault();
-        this.props.sortRecipes(e.target.value)
-        this.setState({currentPage: 1})
-        this.setState({alphabeticallySort: e.target.value})
-        
-    }
-
-
     paginado(pageNumber) {
         this.setState({currentPage: pageNumber})
     }
-    
-
-    
                         
     render() {
         return (
             <div>
                 <NavBar/>
-
-                <button onClick={(e) => this.displayDiets(e)}>Tipo de dieta</button>
+                
+                <button onClick={(e) => this.loadAllRecipes(e)}>Cargar todas las recetas</button>
                 <select onChange={(e) => this.handleFilterDiet(e)}>
+                        <option>Todas las dietas</option>
                     {this.state.diets.map(diets =>
                         <option key={diets.id} value={diets.name} >
                             {diets.name}
@@ -146,14 +124,14 @@ export class Home extends React.Component {
                 <ul  style={{"display": this.state.visibility ? 'inline' : 'none', "listStyleType": "none"}}>
                     <li> Por nombre </li>
                         <select onChange={(e) => this.handleSorts(e)} name='alphabetically'>
-                            <option value="asc" >Ascendiente</option>
-                            <option value="desc" >Descendiente</option>
+                            <option value="alphaUp" >Ascendiente</option>
+                            <option value="alphaDown" >Descendiente</option>
                         </select>
-                    {/* <li> Por Health Score </li>
-                        <select  onChange={(e) => this.HandleSorts(e)} name='healthScore'>
+                    <li> Por Health Score </li>
+                        <select  onChange={(e) => this.handleSorts(e)} name='healthScore'>
                             <option value="hScoreUp" >Ascendiente</option>
                             <option value="hScoreDown" >Descendiente</option>
-                        </select> */}
+                        </select>
                 </ul>
 
                 <div>
@@ -178,19 +156,11 @@ export class Home extends React.Component {
 
 };
 
-
-
 function mapStateToProps(state) {
     return {
         diets: state.diets,
         recipes: state.recipes
     };
 }
-
-// function mapDispatchToProps(dispatch) {
-    //     return {
-        //         getAllDiets: () => dispatch(getAllDiets()),
-//     }
-// }
 
 export default connect(mapStateToProps, {getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes})(Home);

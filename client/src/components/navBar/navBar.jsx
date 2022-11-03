@@ -14,9 +14,7 @@ function NavBar() {
 
     function  handleSubmit(e){
         e.preventDefault();
-        
         dispatch(getAllRecipes(recipeState.name))
-
     };
 
     const handleInputChange = function (e) {
