@@ -5,6 +5,8 @@ export const GET_ALL_DIETS = 'GET_ALL_DIETS';
 
 export const FILTER_RECIPE_DIETS = 'FILTER_RECIPE_DIETS';
 
+export const SORT_BY_NAME = 'SORT_BY_NAME';
+
 
 
 export const getAllRecipes = (name) => { 
@@ -31,6 +33,10 @@ export const getAllDiets = () => {
 
 export const filterRecipeDiets = (payload) => { 
     return { type: FILTER_RECIPE_DIETS, payload: payload }
+};
+
+export const sortByName = (payload) => { 
+    return { type: SORT_BY_NAME, payload: payload }
 };
 
 // export const getMovieDetail = (id) => { 

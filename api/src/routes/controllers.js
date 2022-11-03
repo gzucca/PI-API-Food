@@ -2,13 +2,13 @@ require('dotenv').config();
 const axios = require('axios');
 const {Recipe, Diet} = require('../db');
 const {API_KEY} = process.env;
-const myJson = require ("../../complexSearch.json");
+const myJson = require ("../../complexSearch2.json");
 
 //traemos todas las recetas de la API
 
 
 const getRecipesFromApi =  () => {
-    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
+    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
     const recipesFromApi = myJson
     // const dataRecipesApi = recipesFromApi.data.results;
     const dataRecipesApi = recipesFromApi.results;
@@ -48,7 +48,7 @@ const getRecipesFromDB = async () => {
     });
 };
 
-const getAllDiets = async () => {
+const getAllDiets =  () => {
     // const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=10`)
     const dietsFromApi = myJson
     // const dataDietsApi = dietsFromApi.data.results;

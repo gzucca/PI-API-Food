@@ -21,7 +21,8 @@ router.get('/recipes', async (req, res) => {
                     return {
                     name: recip.name,
                     image: recip.image,
-                    diets: recip.diets
+                    diets: recip.diets,
+                    healthScore: recip.healthScore
                     } 
                 })
                 res.status(200).send(recipesFiltered)
