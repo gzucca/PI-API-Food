@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import LandingPage from './components/landing/landing';
 import Home from './components/home/home';
+import CreateRecipe from './components/CreateRecipe/CreateRecipe'
 import './App.css'
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
         <Route exact path="/" component={LandingPage} />
 
         <Route exact path="/home" component={Home} />
+
+        <Route exact path="/createrecipe" component={CreateRecipe} />
 {/* 
 
         <Route path="/movie/:id" prop component={MovieDetail} />

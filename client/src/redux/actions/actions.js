@@ -7,6 +7,8 @@ export const FILTER_RECIPE_DIETS = 'FILTER_RECIPE_DIETS';
 
 export const SORT_RECIPES = 'SORT_RECIPES';
 
+export const CREATE_RECIPE = 'CREATE_RECIPE';
+
 
 
 export const getAllRecipes = (name) => { 
@@ -23,7 +25,7 @@ export const getAllRecipes = (name) => {
             .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
         } catch (error) {
             alert ('No se pudieron descargar recetas')
-            throw new Error (error)
+            console.log(error)
         }
         
     }
@@ -38,7 +40,7 @@ export const getAllDiets = () => {
 
             } catch (error) {
             alert ('No se pudieron descargar las dietas')
-            throw new Error (error)
+            console.log(error)
         }
     }
 };
@@ -49,6 +51,24 @@ export const filterRecipeDiets = (payload) => {
 
 export const sortRecipes = (payload) => { 
     return { type: SORT_RECIPES, payload: payload }
+};
+
+export const createRecipe = (payload) => { 
+    
+    return async function () {
+        try {   
+            return await fetch("http://localhost:3001/recipes", {
+                method: 'POST',
+                body: payload
+            })
+            .then(res => res.json())
+
+        } catch (error) {
+            alert ('No se pudo crear la receta')
+            console.log(error)
+        }
+        
+    }
 };
 
 // export const getMovieDetail = (id) => { 

@@ -16,6 +16,9 @@ function NavBar() {
     function  handleSubmit(e){
         e.preventDefault();
         dispatch(getAllRecipes(recipeState.name))
+        setRecipeState({
+            name: "",
+        })
     };
 
     const handleInputChange = function (e) {
@@ -39,6 +42,7 @@ function NavBar() {
                         type="text"
                         placeholder='Nombre receta' 
                         autoComplete="off"
+                        value={recipeState.name}
                         onChange={handleInputChange}
                         />
                     </div>

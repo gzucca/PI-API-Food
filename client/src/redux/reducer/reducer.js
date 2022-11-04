@@ -1,12 +1,11 @@
-import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, SORT_RECIPES } from "../actions/actions";
+import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, SORT_RECIPES, CREATE_RECIPE } from "../actions/actions";
 
 
 const initialState = {
     recipes: [],
     allRecipes: [],
     diets: [],
-    // recipeDetail: {},
-    // newRecipe: {},
+
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -54,6 +53,11 @@ const rootReducer = (state = initialState, action) => {
             return {
             ...state,
             recipes: sortedRecipes
+        }
+
+        case CREATE_RECIPE:
+            return {
+            ...state,
         }
         
 
