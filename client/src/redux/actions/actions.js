@@ -10,25 +10,37 @@ export const SORT_RECIPES = 'SORT_RECIPES';
 
 
 export const getAllRecipes = (name) => { 
-    return function (dispatch) {
-        if (name) {
-            return fetch(`http://localhost:3001/recipes?name=${name}`)
+    
+    return async function (dispatch) {
+            try {
+            if (name) {
+                return await fetch(`http://localhost:3001/recipes?name=${name}`)
+                .then(res => res.json())
+                .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
+            else {
+            return await fetch("http://localhost:3001/recipes")
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
-        else {
-        return fetch("http://localhost:3001/recipes")
-        .then(res => res.json())
-        .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
+        } catch (error) {
+            alert ('No se pudieron descargar recetas')
+            throw new Error (error)
+        }
+        
     }
 };
 
-
 export const getAllDiets = () => { 
-    return function (dispatch) {
-        return fetch("http://localhost:3001/diets")
-        .then(res => res.json())
-        .then(data => dispatch({ type: GET_ALL_DIETS, payload: data }))}
-    
+    return async function (dispatch) {
+            try {
+            return await fetch("http://localhost:3001/diets")
+            .then(res => res.json())
+            .then(data => dispatch({ type: GET_ALL_DIETS, payload: data }))
+
+            } catch (error) {
+            alert ('No se pudieron descargar las dietas')
+            throw new Error (error)
+        }
+    }
 };
 
 export const filterRecipeDiets = (payload) => { 

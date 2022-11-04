@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAllRecipes } from '../../redux/actions/actions';
+import'./navBar.css'
 
 
 function NavBar() {
@@ -25,25 +26,25 @@ function NavBar() {
 
 
     return (
-        <div >
-            <Link to="/home"><p>Home</p></Link>
+        <div className='navBar-bg'>
+            <h1>Home</h1>
+            <div className='navBar'>
+                <Link to="/createRecipe">Crear receta</Link>
 
-            <Link to="/createRecipe"><p>Crear receta</p></Link>
 
-            <h4>Buscador</h4>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label >Receta: </label>
-                    <input
-                    type="text"
-                    placeholder='Nombre receta' 
-                    autoComplete="off"
-                    onChange={handleInputChange}
-                    />
-                </div>
-                <button type="submit" >BUSCAR</button>
-            </form>
-
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label >Buscador: </label>
+                        <input
+                        type="text"
+                        placeholder='Nombre receta' 
+                        autoComplete="off"
+                        onChange={handleInputChange}
+                        />
+                    </div>
+                    <button type="submit" >BUSCAR</button>
+                </form>
+            </div>
         </div>
 
     )

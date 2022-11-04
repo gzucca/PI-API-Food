@@ -1,0 +1,14 @@
+.recipeCard h2 {
+    font-size:x-large;
+    color: white;
+    text-decoration: none;
+    text-decoration-color: white;
+}
+
+
+.recipeCard h2:hover {
+    font-size:x-large;
+    color: grey;
+    text-decoration: none;
+    text-decoration-color: grey;
+}

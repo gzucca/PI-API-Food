@@ -1,4 +1,5 @@
 import React from 'react'
+import './paginado.css'
 
 
 export default function Paginado({cardsPerPage, recipes, paginado}) {
@@ -15,8 +16,8 @@ export default function Paginado({cardsPerPage, recipes, paginado}) {
             <ul className="paginado">
                 {pageNumbers && pageNumbers.map (number =>{ 
                     return (
-                    <li className="paginadoPagina" key={number}>
-                        <button onClick={ () => paginado(number)}> {number} </button>
+                    <li key={number}>
+                        <button className="paginadoPagina" onClick={ () => paginado(number)}> {number} </button>
                     </li>
                 )
                 })}

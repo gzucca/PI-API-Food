@@ -26,7 +26,7 @@ const getRecipesFromApi =  () => {
                     let stepText = step.step;
                     return (stepNumber + ": "+ stepText)
                 })
-            }),
+            }).flat(1),
 
         }
     })
