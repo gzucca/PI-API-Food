@@ -17,15 +17,7 @@ router.get('/recipes', async (req, res) => {
         if(name){
             let recipes = await allRecipes.filter(recip => recip.name.toLowerCase().includes(name.toLowerCase()));
             if (recipes.length > 0) {
-                let recipesFiltered = recipes.map((recip) => {
-                    return {
-                    name: recip.name,
-                    image: recip.image,
-                    diets: recip.diets,
-                    healthScore: recip.healthScore
-                    } 
-                })
-                res.status(200).send(recipesFiltered)
+                res.status(200).send(recipes)
             } else {
             res.status(404).send('No existe ninguna receta con ese nombre.');
         }}  else {
@@ -53,16 +45,23 @@ router.get('/recipes/:id', async (req, res) => {
 });
 
 router.post('/recipes', async (req, res) => {
-    const {name, summary, healthScore, steps, diets} = req.body;
+    const {name, summary, healthScore, image, steps, diets} = req.body;
     try {
         const newRecipe = await Recipe.create({
             name,
             summary,
             healthScore,
+            image,
             steps,
-            diets
     })
-    res.status(200).send(newRecipe);
+
+    let newRecipeDiets = await Diet.findAll({
+        where: {name : diets}
+    })
+
+    newRecipe.addDiet(newRecipeDiets)
+
+    res.status(200).json('Receta creada');
     } catch (e) {
         res.status(404).send(e.message);
     }

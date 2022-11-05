@@ -16,13 +16,15 @@ const CreateRecipe = () => {
         diets: [],
     })
     
+    const [newStep, setNewStep] = useState ({
+        step: '',
+        stepNumber: 1,
+    })
+
     useEffect(() => {
         dispatch(getAllDiets());
-    }, []);
-
-    const [step, setStep] = useState ({
-        step: '',
-    })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); 
 
     const handleAddDiet = function (e) {
         e.preventDefault();
@@ -41,26 +43,43 @@ const CreateRecipe = () => {
             ...newRecipe,
             [e.target.name] : e.target.value
         })
-        console.log(newRecipe);
-
     }
     
     const handleChangeStep = function (e) {
-        setStep({
-            ...step,
-            [e.target.name] : e.target.value
+        setNewStep({
+            ...newStep,
+            step : e.target.value
         })
-        console.log(step);
     }
     
-    const handleAddStep = function (e) {
+    const handleSubmitStep = function (e) {
         e.preventDefault();
         let newSteps = newRecipe.steps
-        newSteps.push(step.step)
+        let addStep = `${newStep.stepNumber}: ${newStep.step}`
+        newSteps.push(addStep)
         setNewRecipe({
             ...newRecipe,
             steps: [...newSteps],
         })
+        setNewStep({
+            step: '',
+            stepNumber: (newStep.stepNumber + 1)
+        })
+    }
+
+    const handleSubmitRecipe = function (e) { 
+        e.preventDefault();
+        console.log(newRecipe);
+        dispatch(createRecipe(newRecipe))
+        alert('Receta creada!')
+        setNewRecipe({
+            name: '',
+            summary: '',
+            healthScore: '',
+            steps: [],
+            diets: [], 
+        })
+
     }
 
 
@@ -71,20 +90,23 @@ const CreateRecipe = () => {
             <h1>Crear Receta</h1>
 
             <form>
-                <button>CREAR RECETA</button>
+                <button type='submit' onClick={(e) => handleSubmitRecipe(e)}>CREAR RECETA</button>
+
                 <div>
                     <label>Nombre: </label>
                     <input type="text" value={newRecipe.name} name='name' onChange={handleChange}/>
                 </div>
-                <div>
-                </div>
+
                 <div>
                     <label>HealthScore: </label>
                     <input type="number" value={newRecipe.healthScore} name='healthScore' placeholder='1-100' onChange={handleChange}/>
                 </div>
-                <label>Resumen: </label>
+
+                <div>
+                    <label>Resumen: </label>
                     <textarea name="summary" cols="50" rows="2" onChange={handleChange} />
-     
+                </div>
+
                 <div>
                     <label>Dietas: </label>
                     <select >
@@ -96,6 +118,7 @@ const CreateRecipe = () => {
                     </select> 
                     <button type='submit' onClick={(e) => handleAddDiet(e)}>AGREGAR DIETA</button>
                 </div>
+
                 <div>
                     <ul> Dietas Agregadas:
                         {newRecipe.diets.map(diet => 
@@ -106,8 +129,16 @@ const CreateRecipe = () => {
 
                 <div>
                     <label>Pasos: </label>
-                    <textarea cols="50" rows="2" type="text"  name='step' onChange={handleChangeStep}/>
-                    <button type='submit'  onClick={(e) => handleAddStep(e)}>AGREGAR PASO</button>
+                    <textarea cols="50" rows="2" type="text" value={newStep.step} name='step' onChange={handleChangeStep}/>
+                    <button type='submit' onClick={(e) => handleSubmitStep(e)}>AGREGAR PASO</button>
+                </div>
+
+                <div>
+                    <ul> Pasos:
+                        {newRecipe.steps.map(step => 
+                            <li key={step}>{step}</li>
+                        )}
+                    </ul>
                 </div>
 
             </form>

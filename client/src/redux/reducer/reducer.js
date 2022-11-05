@@ -1,4 +1,4 @@
-import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, SORT_RECIPES, CREATE_RECIPE } from "../actions/actions";
+import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, GET_RECIPES, SORT_RECIPES, CREATE_RECIPE } from "../actions/actions";
 
 
 const initialState = {
@@ -18,6 +18,12 @@ const rootReducer = (state = initialState, action) => {
             allRecipes: action.payload
         }
 
+        case GET_RECIPES:
+            return {
+            ...state,
+            recipes: action.payload,
+        }
+
         case GET_ALL_DIETS:
             return {
             ...state,
@@ -25,11 +31,21 @@ const rootReducer = (state = initialState, action) => {
         }
 
         case FILTER_RECIPE_DIETS:
-            const allRecipes = state.allRecipes
-            const dietsFiltered = action.payload !== "allDiets" ? allRecipes.filter(recip => recip.diets.includes(action.payload)) : state.allRecipes
+            let allRecipes = state.allRecipes
+            let recipesFiltered = []
+            if (action.payload !== 'allDiets') {
+                for (let i = 0; i < allRecipes.length; i++) {
+                    const recipe = allRecipes[i];
+                    if (recipe.diets.filter(diet => diet.name === action.payload).length > 0){
+                        recipesFiltered.push(recipe)
+                    }
+                }
+            } else {
+                recipesFiltered = allRecipes
+            }
             return {
             ...state,
-            recipes: dietsFiltered
+            recipes: recipesFiltered
         }
 
         case SORT_RECIPES:

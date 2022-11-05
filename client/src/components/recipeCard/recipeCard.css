@@ -12,3 +12,8 @@
     text-decoration: none;
     text-decoration-color: grey;
 }
+
+.recipeCard img {
+    width: 540px;
+    height: 400px;
+}

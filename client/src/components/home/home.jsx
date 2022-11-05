@@ -6,6 +6,7 @@ import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
 import './home.css';
 import clientBackground from "../../clientBackground.png"
+import oldReliable from "../../oldReliable.jpg"
 
 
 export class Home extends React.Component {
@@ -40,10 +41,12 @@ export class Home extends React.Component {
         this.setState({indexOfFirstCard: (this.state.indexOfLastCard - this.state.cardsPerPage)})
     }
 
-    async componentDidMount(){
-        await this.props.getAllRecipes();
-        await this.props.getAllDiets();
-        this.setState({diets : this.props.diets})
+    componentDidMount(){
+        this.props.getAllRecipes();
+        this.props.getAllDiets();
+        setTimeout(() => {
+            this.setState({diets : this.props.diets})
+        }, 500);
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -121,10 +124,10 @@ export class Home extends React.Component {
                     <div>
                     {(this.state.currentCards).map(r => {
                         return <RecipeCard
-                            key={r.name}
+                            key={r.id}
                             name={r.name}
                             diets={r.diets}
-                            img={r.image}
+                            img={r.image? r.image : oldReliable}
                             id={r.id}
                             healthScore={r.healthScore}
                         />

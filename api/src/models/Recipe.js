@@ -23,12 +23,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     steps: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
-      // get() {
-      //   const stepByStep = this.getDataValue(steps);
-      //   return stepByStep.number + ": " + stepByStep.step
-      // }
     },
     image: {
       type: DataTypes.STRING,

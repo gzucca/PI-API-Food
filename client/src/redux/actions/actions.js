@@ -1,5 +1,8 @@
+import axios from 'axios';
 
-export const GET_ALL_RECIPES = 'GELL_ALL_RECIPES';
+export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
+
+export const GET_RECIPES = 'GET_RECIPES';
 
 export const GET_ALL_DIETS = 'GET_ALL_DIETS';
 
@@ -11,20 +14,30 @@ export const CREATE_RECIPE = 'CREATE_RECIPE';
 
 
 
-export const getAllRecipes = (name) => { 
+export const getAllRecipes = () => { 
+    
+    return async function (dispatch) {
+            try {
+            return await fetch("http://localhost:3001/recipes")
+            .then(res => res.json())
+            .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))
+        } catch (error) {
+            alert ('No se pudieron descargar recetas')
+            console.log(error)
+        }
+    }
+};
+
+export const getRecipes = (name) => { 
     
     return async function (dispatch) {
             try {
             if (name) {
                 return await fetch(`http://localhost:3001/recipes?name=${name}`)
                 .then(res => res.json())
-                .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
-            else {
-            return await fetch("http://localhost:3001/recipes")
-            .then(res => res.json())
-            .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))}
+                .then(data => dispatch({ type: GET_RECIPES, payload: data }))}
         } catch (error) {
-            alert ('No se pudieron descargar recetas')
+            alert ('No se pudieron encontrar recetas para esa búsqueda')
             console.log(error)
         }
         
@@ -54,20 +67,9 @@ export const sortRecipes = (payload) => {
 };
 
 export const createRecipe = (payload) => { 
-    
-    return async function () {
-        try {   
-            return await fetch("http://localhost:3001/recipes", {
-                method: 'POST',
-                body: payload
-            })
-            .then(res => res.json())
-
-        } catch (error) {
-            alert ('No se pudo crear la receta')
-            console.log(error)
-        }
-        
+    return async function () { 
+            const res = await axios.post('http://localhost:3001/recipes', payload);
+            return res;   
     }
 };
 

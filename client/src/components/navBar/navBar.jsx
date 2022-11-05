@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getAllRecipes } from '../../redux/actions/actions';
+import { getRecipes } from '../../redux/actions/actions';
 import'./navBar.css'
 
 
@@ -15,7 +15,7 @@ function NavBar() {
 
     function  handleSubmit(e){
         e.preventDefault();
-        dispatch(getAllRecipes(recipeState.name))
+        dispatch(getRecipes(recipeState.name))
         setRecipeState({
             name: "",
         })

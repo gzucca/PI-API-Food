@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import LandingPage from './components/landing/landing';
 import Home from './components/home/home';
-import CreateRecipe from './components/CreateRecipe/CreateRecipe'
+import CreateRecipe from './components/createRecipe/createRecipe'
 import './App.css'
 
 function App() {
