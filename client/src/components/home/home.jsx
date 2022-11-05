@@ -130,6 +130,7 @@ export class Home extends React.Component {
                             img={r.image? r.image : oldReliable}
                             id={r.id}
                             healthScore={r.healthScore}
+                            dishTypes={r.dishTypes}
                         />
                     })}
                     </div>

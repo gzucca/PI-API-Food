@@ -12,6 +12,8 @@ export const SORT_RECIPES = 'SORT_RECIPES';
 
 export const CREATE_RECIPE = 'CREATE_RECIPE';
 
+export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
+
 
 
 export const getAllRecipes = () => { 
@@ -58,6 +60,21 @@ export const getAllDiets = () => {
     }
 };
 
+export const getRecipeDetail = (id) => { 
+    return async function(dispatch) {
+        try {
+            const json = await axios.get('http://localhost:3001/recipes/' + id);
+            return dispatch({
+                type: GET_RECIPE_DETAIL,
+                payload: json.data,
+            });
+        } catch (error) {
+            alert('Recipe not found')
+        }  
+    }
+}
+
+
 export const filterRecipeDiets = (payload) => { 
     return { type: FILTER_RECIPE_DIETS, payload: payload }
 };
@@ -72,28 +89,3 @@ export const createRecipe = (payload) => {
             return res;   
     }
 };
-
-// export const getMovieDetail = (id) => { 
-//     return function (dispatch) {
-//         return fetch(`http://localhost:3001/movies/${id}`)
-//         .then(res => res.json())
-//         .then(data => dispatch({ type: GET_MOVIE_DETAILS, payload: data}))
-//     }
-// };
-
-// let id = 5
-// export const createMovie = (payload) => {
-//     id++;
-//     return { type: CREATE_MOVIE, payload: {...payload, id: id} }
-// };
-
-
-// // Desde el componente ejecutamos la action creator, pasandole como argumento el id de la movie que queremos eliminar.
-// export const deleteMovie = (id) => { 
-//     return { type: DELETE_MOVIE, payload: id} 
-// };
-
-// // Desde el componente ejecutamos la action creator, pasandole como argumento los values que vamos a utilizar para enviar el form de contacto.
-// export const sendEmail = (payload) => {
-//     return { type: SEND_EMAIL, payload: payload}
-// };

@@ -20,6 +20,7 @@ const getRecipesFromApi =  () => {
             diets: recip.diets.map((element) => {return {name: element}}),
             healthScore: recip.healthScore,
             image: recip.image,
+            dishTypes: recip.dishTypes,
             steps: recip.analyzedInstructions.map((steps) => {
                 return steps.steps.map((step) => { 
                     let stepNumber = step.number;

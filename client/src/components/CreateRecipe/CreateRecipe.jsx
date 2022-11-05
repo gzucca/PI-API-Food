@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllDiets, createRecipe } from "../../redux/actions/actions";
 import { Link } from 'react-router-dom';
-
+import './createRecipe.css';
 
 const CreateRecipe = () => {
     const dispatch = useDispatch()
@@ -84,7 +84,7 @@ const CreateRecipe = () => {
 
 
     return (
-        <div>
+        <div className='createRecipe'>
             <Link to='/home'><button>Volver</button></Link>
 
             <h1>Crear Receta</h1>

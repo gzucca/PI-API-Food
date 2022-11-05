@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './recipeCard.css';
 
 
-function RecipeCard({ name, img, diets, id, healthScore }) {
+function RecipeCard({ name, img, diets, id, dishTypes }) {
 
     let dietsNewArray = (diets) => {
         let newArray = []
@@ -18,14 +18,35 @@ function RecipeCard({ name, img, diets, id, healthScore }) {
         return newArray
     }
 
+    let dishTypesNewArray = (dishTypes) => {
+        let newArray = []
+        for (let i = 0; i < dishTypes.length; i++) {
+            let dishType = dishTypes[i];
+            if (i === 0){
+                let dishTypeUpper = dishType.charAt(0).toUpperCase() + dishType.slice(1)
+                newArray.push(dishTypeUpper)
+            } if (i !== 0){
+            newArray.push(dishType)
+            }
+            if (i+1 < dishTypes.length){
+            newArray.push(', ')}
+            }   
+            newArray.push('.')
+        return newArray
+    }
+
 
     return (
         <div className='recipeCard' >
-            <Link to={`/recipes/${id}`}><h2>{name}</h2></Link>
+            <Link to={`/recipe/${id}`}><h2>{name}</h2></Link>
             <h4>
                 {dietsNewArray(diets).map(e => {
                 return e})}
             </h4>
+            <h5>
+                {dishTypes? dishTypesNewArray(dishTypes).map(e => {
+                return e}): null}
+            </h5>
             <img height="400px" src={img} alt="imagen" />
         </div>
     )

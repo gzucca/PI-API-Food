@@ -1,11 +1,11 @@
-import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, GET_RECIPES, SORT_RECIPES, CREATE_RECIPE } from "../actions/actions";
+import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, GET_RECIPES, SORT_RECIPES, CREATE_RECIPE, GET_RECIPE_DETAIL } from "../actions/actions";
 
 
 const initialState = {
     recipes: [],
     allRecipes: [],
     diets: [],
-
+    recipeDetail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -75,19 +75,16 @@ const rootReducer = (state = initialState, action) => {
             return {
             ...state,
         }
-        
 
-        // case DELETE_MOVIE:
-        //     return {
-        //     ...state,
-        //     movies: state.movies.filter(film => film.id !== action.payload)
-        // }
-    
-        // case SEND_EMAIL:
-        //     return {
-        //     ...state,
-        //     email: action.payload
-        // }
+        case GET_RECIPE_DETAIL:
+            console.log('Este es el payload', action.payload);
+            let recipeDetails = action.payload.find (r => r)
+            console.log('Este es el valor en la store', recipeDetails)
+            return {
+            ...state,
+            recipeDetail: recipeDetails,
+        }
+        
 
         default:
             return { 
