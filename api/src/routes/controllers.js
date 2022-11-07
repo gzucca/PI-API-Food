@@ -82,6 +82,40 @@ const getAllDiets =  () => {
     return diets;
 };
 
+// const getAllDishTypes =  () => {
+
+//     const dishesFromApi = myJson
+
+//     const datadishesApi = dishesFromApi.results;
+
+//     const resultsApi = datadishesApi.map((recip) => {
+//         return {
+//             dishTypes: recip.dishTypes,
+//         }
+//     })
+
+//     const dishTypesArrays = resultsApi.map((e) => {
+//         return e.dishTypes
+//     })
+
+//     let dishTypesOneArray = dishTypesArrays.flat(1)
+
+//     let dishTypes = [];
+
+//     for (let i = 0; i < dishTypesOneArray.length; i++) {
+//         const dishType = dishTypesOneArray[i];
+//         if (dishTypes.includes(dishType) === false) {
+//         dishTypes.push(dishType)
+//         }
+//     }
+
+
+
+
+//     return dishTypes;
+// };
+
+// console.log(getAllDishTypes())
 
 const getAllRecipes = async () => {
     const recipesFromApi = await getRecipesFromApi();

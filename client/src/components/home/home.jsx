@@ -87,17 +87,24 @@ export class Home extends React.Component {
     paginado(pageNumber) {
         this.setState({currentPage: pageNumber})
     }
+
+    scrollToTop(e){
+        e.preventDefault();
+        window.scrollTo({
+        top: 0, 
+        behavior: 'smooth'
+        })};
                         
     render() {
         return (
-            <div className="home-wrap">
+            <div  className="home-wrap">
             <img alt="" src={clientBackground} className="home-bg" />
                 <div className="home">
                     <NavBar/>
                     
-                    <button onClick={(e) => this.loadAllRecipes(e)}>Cargar todas las recetas</button>
+                    <button id="top" onClick={(e) => this.loadAllRecipes(e)}>Load all recipes</button>
                     <select onChange={(e) => this.handleFilterDiet(e)}>
-                            <option value='allDiets'>Todas las dietas</option>
+                            <option value='allDiets'>All diets</option>
                         {this.state.diets.map(diets =>
                             <option key={diets.id} value={diets.name} >
                                 {diets.name}
@@ -105,17 +112,17 @@ export class Home extends React.Component {
                         )}
                     </select> 
 
-                    <button onClick={() => this.toggleMenu()}>Ordenar</button>
+                    <button onClick={() => this.toggleMenu()}>Sort</button>
                     <ul  style={{"display": this.state.visibility ? 'inline' : 'none', "listStyleType": "none"}}>
-                        <li> Por nombre </li>
+                        <li> By name </li>
                             <select onChange={(e) => this.handleSorts(e)} name='alphabetically'>
-                                <option value="alphaUp" >Ascendiente</option>
-                                <option value="alphaDown" >Descendiente</option>
+                                <option value="alphaUp" >A-Z</option>
+                                <option value="alphaDown" >Z-A</option>
                             </select>
-                        <li> Por Health Score </li>
+                        <li> By Health Score </li>
                             <select  onChange={(e) => this.handleSorts(e)} name='healthScore'>
-                                <option value="hScoreUp" >Ascendiente</option>
-                                <option value="hScoreDown" >Descendiente</option>
+                                <option value="hScoreUp" >1 - 100</option>
+                                <option value="hScoreDown" >100 - 1</option>
                             </select>
                     </ul>
 
@@ -135,7 +142,13 @@ export class Home extends React.Component {
                     })}
                     </div>
 
+                    <Paginado cardsPerPage={this.state.cardsPerPage} recipes={this.props.recipes.length} paginado={this.paginado}/>
+
+                <button onClick={(e) => this.scrollToTop(e)}>Back to top</button>
                 </div>
+
+
+
             
             </div>
 

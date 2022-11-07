@@ -1,45 +1,90 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getRecipeDetail } from '../../redux/actions/actions';
 import './recipeDetail.css';
+import recipeDetailbg from "../../recipeDetailbg.jpg"
+import oldReliable from "../../oldReliable.jpg"
 
 
 function RecipeDetail() {
 
     const dispatch = useDispatch();
     const {id} = useParams();
+    const recipe = useSelector((state) => state.recipeDetail);
+    
     
     useEffect(() => {
         dispatch(getRecipeDetail(id));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    
+    let dietsNewArray = (diets) => {
+        let newArray = []
+        for (let i = 0; i < diets.length; i++) {
+            let diet = diets[i];
+            let dietUpper = diet.name.charAt(0).toUpperCase() + diet.name.slice(1)
+            newArray.push(dietUpper)
+            if (i+1 < diets.length){
+            newArray.push(', ')}
+            }   
+            newArray.push('.')
+        return newArray
+    }
 
-    const recipes = useSelector((state) => state.recipeDetail);
-
-    console.log(recipes);
-
+    let dishTypesNewArray = (dishTypes) => {
+        let newArray = []
+        for (let i = 0; i < dishTypes.length; i++) {
+            let dishType = dishTypes[i];
+            newArray.push(dishType)
+            if (i+1 < dishTypes.length){
+            newArray.push(', ')}
+            }   
+            newArray.push('.')
+        return newArray
+    }
+    
 
     return (
-        <div className='recipeDetail'>
-        {recipes? <div> 
-            <div >"<b>{recipes.name}</b>"</div> 
-            <div > <img src={recipes.image} alt="Not found" /> 
+        <div className="recipeDetail-wrap">
+        <img alt="" src={recipeDetailbg} className='recipeDetailbg' />
+            {recipe.diets && recipe.name? 
+                <div className='recipeDetail'> 
+                <Link to='/home'><button>Back</button></Link>
 
-            <div > |Health Score| <br/> '{recipes.healthScore}'<br/> |Dish type| <br/>'{recipes.dishTypes}'</div>
-            
+                    <div > <h1>{recipe.name}</h1> </div> 
+                    
+                    <div > <img src={recipe.image? recipe.image : oldReliable} alt="Not found" /> </div>
 
-            </div>
-            
+                    <div >  {recipe.healthScore && (<h2>Health Score: {recipe.healthScore}</h2>)} </div>
+                    
+                    <div>  {recipe.dishTypes.length && (<h3>Dish Types: {dishTypesNewArray(recipe.dishTypes).map (e => e)} </h3>)} </div>
 
-            
-            <div ><p dangerouslySetInnerHTML={{ __html: recipes.summary }}></p></div>
-        
-            <div > <div > <b>Steps:</b></div> <br/>{recipes.steps}</div>
-            </div> : <div>"Recipe not found"</div>}
+                    <div> <h3>Compatible diets: {dietsNewArray(recipe.diets).map(e => e)}</h3> </div>                    
+
+                    <div ><p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p></div>
+                
+                    {recipe.steps.length?
+                    (<>  
+                        <div ><h2>Preparation:</h2></div> 
+
+                        <div>
+                            <ul>
+                            {recipe.steps.map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
+                            </ul>
+                        </div>
+                    </>) : null}
+
+                </div> 
+
+                : 
+
+                <div>"Recipe not found"</div>
+            }
             
         </div>
-    );
-    };
+    )
+    
+};
 
     
 export default RecipeDetail;

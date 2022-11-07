@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Recipe', {
+  sequelize.define('recipe', {
     id: {
       type: DataTypes.UUID, //generamos un ID único con valores random que no se van a repetir. Esto para que no se pise con la API
       defaultValue: DataTypes.UUIDV4,
@@ -19,7 +19,15 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     healthScore: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
+      allowNull: true,
+      set(value){
+        if (value === "") {
+        this.setDataValue('healthScore', null );
+      }}
+    },
+    dishTypes: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
     steps: {

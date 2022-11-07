@@ -34,7 +34,7 @@ router.get('/recipes/:id', async (req, res) => {
     const allRecipes = await getAllRecipes();
     try {
         if(id){
-            let recipes = await allRecipes.filter(recip => recip.id === Number(id));
+            let recipes = await allRecipes.filter(recip => recip.id == (id));
             recipes.length ? 
             res.status(200).send(recipes) :
             res.status(404).send('No existe ninguna receta con ese ID.');
@@ -45,12 +45,15 @@ router.get('/recipes/:id', async (req, res) => {
 });
 
 router.post('/recipes', async (req, res) => {
-    const {name, summary, healthScore, image, steps, diets} = req.body;
+    const {name, summary, healthScore, dishTypes, image, steps, diets} = req.body;
     try {
+        if(!name || !summary || !steps || !diets){
+            return res.status(404).send("Falta enviar datos obligatorios")}
         const newRecipe = await Recipe.create({
             name,
             summary,
             healthScore,
+            dishTypes,
             image,
             steps,
     })

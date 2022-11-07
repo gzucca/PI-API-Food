@@ -77,9 +77,7 @@ const rootReducer = (state = initialState, action) => {
         }
 
         case GET_RECIPE_DETAIL:
-            console.log('Este es el payload', action.payload);
             let recipeDetails = action.payload.find (r => r)
-            console.log('Este es el valor en la store', recipeDetails)
             return {
             ...state,
             recipeDetail: recipeDetails,

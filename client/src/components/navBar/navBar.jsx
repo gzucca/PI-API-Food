@@ -32,21 +32,21 @@ function NavBar() {
         <div className='navBar-bg'>
             <h1>Home</h1>
             <div className='navBar'>
-                <Link to="/createRecipe">Crear receta</Link>
+                <Link to="/createRecipe">Create recipe</Link>
 
 
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label >Buscador: </label>
+                        <label >Search: </label>
                         <input
                         type="text"
-                        placeholder='Nombre receta' 
+                        placeholder='Recipe name' 
                         autoComplete="off"
                         value={recipeState.name}
                         onChange={handleInputChange}
                         />
                     </div>
-                    <button type="submit" >BUSCAR</button>
+                    <button type="submit" >🔎</button>
                 </form>
             </div>
         </div>

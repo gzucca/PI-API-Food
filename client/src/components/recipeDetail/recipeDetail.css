@@ -1,3 +1,26 @@
-.recipeDetail{
-    background-color: white;
+.recipeDetail-wrap {
+    overflow: hidden;
+    position: relative;
 }
+
+.recipeDetailbg {
+    opacity: 0.3;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.recipeDetail{
+    position: relative;
+    color: white
+}
+
+.recipeDetail img{
+    width: 540px;
+    height: 400px;
+}
+
+
+

@@ -63,13 +63,12 @@ export const getAllDiets = () => {
 export const getRecipeDetail = (id) => { 
     return async function(dispatch) {
         try {
-            const json = await axios.get('http://localhost:3001/recipes/' + id);
-            return dispatch({
-                type: GET_RECIPE_DETAIL,
-                payload: json.data,
-            });
+            return await fetch(`http://localhost:3001/recipes/${id}`)
+            .then(res => res.json())
+            .then(data => dispatch({ type: GET_RECIPE_DETAIL, payload: data }))
         } catch (error) {
-            alert('Recipe not found')
+            alert('No se pudieron encontrar recetas con ese ID')
+            console.log(error)
         }  
     }
 }
@@ -85,7 +84,11 @@ export const sortRecipes = (payload) => {
 
 export const createRecipe = (payload) => { 
     return async function () { 
-            const res = await axios.post('http://localhost:3001/recipes', payload);
-            return res;   
+    try {
+        const res = await axios.post('http://localhost:3001/recipes', payload);
+        return res;
+    } catch (error) {
+        alert('No se pudo crear la receta')
+        console.log(error)}  
     }
-};
+}
