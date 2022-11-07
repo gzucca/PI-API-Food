@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: true,
       set(value){
-        if (value === "") {
+        if (typeof(value) === 'string') {
         this.setDataValue('healthScore', null );
       }}
     },

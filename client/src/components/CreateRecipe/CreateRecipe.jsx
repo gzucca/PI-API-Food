@@ -12,17 +12,23 @@ function validate(newRecipe) {
     if (!newRecipe.name) {
         errors.name = "Name is required"
     } 
-    if (!newRecipe.summary) {
+    else if (!newRecipe.summary) {
         errors.summary = "Summary is required"
     } 
-    if (!newRecipe.steps.length) {
-        errors.steps = "A step is required"
-    } 
-    if (!newRecipe.diets.length) {
+    else if (!newRecipe.diets.length) {
         errors.diets = "A diet is required"
     } 
+    else if (!newRecipe.steps.length) {
+        errors.steps = "A step is required"
+    } 
 
-    
+    if (newRecipe.image.length > 0 && (/(https?:\/\/.*\.(?:png|jpg))/i.test(newRecipe.image) === false)) {
+        errors.image = "The URL is not valid"
+    } 
+
+    if (((newRecipe.healthScore.length > 0) && (newRecipe.healthScore < 1 || newRecipe.healthScore > 100)) || Number.isNaN(Number(newRecipe.healthScore)) ) {
+        errors.healthScore = "Please enter a number between 1-100"
+    } 
 
     return errors
 };
@@ -99,6 +105,7 @@ const CreateRecipe = () => {
             [e.target.name] : e.target.value
         }))
     }
+
     
     const handleChangeStep = function (e) {
         setNewStep({
@@ -208,25 +215,27 @@ const CreateRecipe = () => {
                     <button type='submit'  disabled={Object.keys(errors).length} onClick={(e) => handleSubmitRecipe(e)}>SUBMIT</button>}
 
                     <div>
-                        <label>Name: </label>
-                        <input type="text" value={newRecipe.name} name='name' required onChange={handleChange}/>
+                        <label>Name*: </label>
+                        <input type="text" value={newRecipe.name} name='name' maxLength="255" required onChange={handleChange}/>
                         {errors.name && (<p>{errors.name}</p>)}
                     </div>
 
                     <div>
                         <label>HealthScore: </label>
-                        <input type="number" value={newRecipe.healthScore} name='healthScore' placeholder='1-100' onChange={handleChange}/>
+                        <input type="text" value={newRecipe.healthScore} name='healthScore' placeholder='1-100' onChange={handleChange}/>
+                        {errors.healthScore && (<p>{errors.healthScore}</p>)}
                     </div>
 
                     <div>
-                        <label>Summary: </label>
-                        <textarea name="summary" cols="50" rows="2" value={newRecipe.summary} required onChange={handleChange} />
+                        <label>Summary*: </label>
+                        <textarea name="summary" cols="50" rows="2" value={newRecipe.summary} maxLength="255" required onChange={handleChange} />
                         {errors.summary && (<p>{errors.summary}</p>)}
                     </div>
 
                     <div>
                         <label>Image: </label>
-                        <input type="text" value={newRecipe.image} name="image" onChange={handleChange} />
+                        <input type="url" value={newRecipe.image} placeholder='URL' name="image" onChange={handleChange} />
+                        {errors.image && (<p>{errors.image}</p>)}
                     </div>
 
                     <div>
@@ -253,9 +262,9 @@ const CreateRecipe = () => {
                     </div>
 
                     <div>
-                        <label>Diets: </label>
+                        <label>Diets*: </label>
                         <select >
-                                {diets.map(diet =>
+                                { diets.length && diets.map(diet =>
                                     <option key={diet.id} value={diet.name} >
                                         {diet.name}
                                     </option>
@@ -277,8 +286,8 @@ const CreateRecipe = () => {
                     </div>
 
                     <div>
-                        <label>Steps: </label>
-                        <textarea cols="50" rows="2" type="text" value={newStep.step} name='step' required onChange={handleChangeStep}/>
+                        <label>Steps*: </label>
+                        <textarea cols="50" rows="2" type="text" value={newStep.step} name='step' maxLength="255" required onChange={handleChangeStep}/>
                         <button type='submit' onClick={(e) => handleAddStep(e)}>ADD STEP</button>
                         <button type='submit' onClick={(e) => handleDeleteSteps(e)}>DELETE STEPS</button>
                         {errors.steps && (<p>{errors.steps}</p>)}

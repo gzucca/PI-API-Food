@@ -98,6 +98,8 @@ export class Home extends React.Component {
     render() {
         return (
             <div  className="home-wrap">
+            { this.state.diets && (
+                <>
             <img alt="" src={clientBackground} className="home-bg" />
                 <div className="home">
                     <NavBar/>
@@ -149,8 +151,10 @@ export class Home extends React.Component {
 
 
 
-            
+                </>
+            )}
             </div>
+
 
         );
     }
