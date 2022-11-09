@@ -7,12 +7,12 @@ const myJson = require ("../../complexSearch2.json");
 //traemos todas las recetas de la API
 
 
-const getRecipesFromApi = () => {
+const getRecipesFromApi = async () => {
     try {
-    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
-    const recipesFromApi = myJson
-    // const dataRecipesApi = recipesFromApi.data.results;
-    const dataRecipesApi = recipesFromApi.results;
+    const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
+    // const recipesFromApi = myJson
+    const dataRecipesApi = recipesFromApi.data.results;
+    // const dataRecipesApi = recipesFromApi.results;
     const resultsApi = dataRecipesApi.map((recip) => {
         return {
             id: recip.id,
@@ -58,10 +58,10 @@ const getRecipesFromDB = async () => {
 
 const getAllDiets = async () => {
     try{
-    // const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=50`)
-    const dietsFromApi = myJson
-    // const dataDietsApi = dietsFromApi.data.results;
-    const dataDietsApi = dietsFromApi.results;
+    const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=50`)
+    // const dietsFromApi = myJson
+    const dataDietsApi = dietsFromApi.data.results;
+    // const dataDietsApi = dietsFromApi.results;
     // console.log(dataRecipesApi);
     const resultsApi = dataDietsApi.map((recip) => {
         return {
@@ -91,40 +91,6 @@ const getAllDiets = async () => {
     }
 }
 
-// const getAllDishTypes =  () => {
-
-//     const dishesFromApi = myJson
-
-//     const datadishesApi = dishesFromApi.results;
-
-//     const resultsApi = datadishesApi.map((recip) => {
-//         return {
-//             dishTypes: recip.dishTypes,
-//         }
-//     })
-
-//     const dishTypesArrays = resultsApi.map((e) => {
-//         return e.dishTypes
-//     })
-
-//     let dishTypesOneArray = dishTypesArrays.flat(1)
-
-//     let dishTypes = [];
-
-//     for (let i = 0; i < dishTypesOneArray.length; i++) {
-//         const dishType = dishTypesOneArray[i];
-//         if (dishTypes.includes(dishType) === false) {
-//         dishTypes.push(dishType)
-//         }
-//     }
-
-
-
-
-//     return dishTypes;
-// };
-
-// console.log(getAllDishTypes())
 
 const getAllRecipes = async () => {
     const recipesFromApi = await getRecipesFromApi();
@@ -133,7 +99,6 @@ const getAllRecipes = async () => {
     return allRecipes
 
 };
-
 
 
 module.exports = {

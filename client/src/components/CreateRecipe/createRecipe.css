@@ -27,13 +27,16 @@
 }
 
 .createRecipe select {
-    width: 60%;
+    width: 70%;
 }
 
 .error {
-    font-size: x-small;
     color: red;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    font-size: x-small;
 }
+
 
 .createRecipe label{
     font-size: larger;
@@ -47,9 +50,7 @@
 
 }
 
-p{
-    margin: 0px 0px 0px;
-}
+
 
 .createRecipeBackButton{
     position: absolute;
@@ -157,7 +158,7 @@ p{
 .dietsInput { grid-area: 4 / 2 / 5 / 3; 
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: stretch;
@@ -258,6 +259,10 @@ p{
     padding-bottom: 0px;
 }
 
+.previewDietsList p {
+    margin: 0 0 0 0;
+}
+
 .previewDietsList div  {
     display: flex;
     flex-grow: 0;
@@ -279,6 +284,10 @@ p{
     align-items: flex-start;
     align-content: flex-start;
     padding-bottom: 0px;
+}
+
+.previewDishTypesList p {
+    margin: 0 0 0 0;
 }
 
 .previewDishTypesList div  {

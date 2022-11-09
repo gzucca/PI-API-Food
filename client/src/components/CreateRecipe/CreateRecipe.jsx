@@ -121,7 +121,7 @@ const CreateRecipe = () => {
         e.preventDefault();
         if (newStep.step.length > 0) {
         let newSteps = newRecipe.steps
-        let addStep = `${newStep.stepNumber}: ${newStep.step}`
+        let addStep = newStep.step
         newSteps.push(addStep)
         setNewRecipe({
             ...newRecipe,
