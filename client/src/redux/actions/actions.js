@@ -33,11 +33,10 @@ export const getAllRecipes = () => {
 export const getRecipes = (name) => { 
     
     return async function (dispatch) {
-            try {
-            if (name) {
-                return await fetch(`http://localhost:3001/recipes?name=${name}`)
-                .then(res => res.json())
-                .then(data => dispatch({ type: GET_RECIPES, payload: data }))}
+        try {
+            return await fetch(`http://localhost:3001/recipes?name=${name}`)
+            .then(res => res.json())
+            .then(data => dispatch({ type: GET_RECIPES, payload: data }))
         } catch (error) {
             alert ('No se pudieron encontrar recetas para esa búsqueda')
             console.log(error)
@@ -52,7 +51,6 @@ export const getAllDiets = () => {
             return await fetch("http://localhost:3001/diets")
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL_DIETS, payload: data }))
-
             } catch (error) {
             alert ('No se pudieron descargar las dietas')
             console.log(error)

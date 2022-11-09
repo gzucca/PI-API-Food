@@ -17,9 +17,9 @@ export class Home extends React.Component {
         this.state = {
             diets: [],
             visibility : false,
-            sort : '',
+            sortState : '',
             currentPage : 1,
-            cardsPerPage : 6,
+            cardsPerPage : 9,
             indexOfLastCard : "",
             indexOfFirstCard : "",
             currentCards : []
@@ -41,22 +41,42 @@ export class Home extends React.Component {
         this.setState({indexOfFirstCard: (this.state.indexOfLastCard - this.state.cardsPerPage)})
     }
 
-    componentDidMount(){
-        this.props.getAllRecipes();
-        this.props.getAllDiets();
-        setTimeout(() => {
-            this.setState({diets : this.props.diets})
-        }, 500);
+    async componentDidMount(){
+        await this.props.getAllRecipes();
+        await this.props.getAllDiets()
+        this.setState({
+            diets: this.props.diets
+        })
     }
 
     componentDidUpdate(prevProps, prevState){
-        if (prevState.currentPage !== this.state.currentPage || prevProps.recipes !== this.props.recipes || prevState.sort !== this.state.sort) {
+        if (prevState.currentPage === this.state.currentPage && prevProps.recipes !== this.props.recipes) {
+            this.setState({
+                currentPage: 1,
+            })
             this.indexOfLastCard();
             setTimeout(() => {
                 this.indexOfFirstCard();
                 this.currentCards()
             }, 100);
         }
+
+        if (prevState.currentPage !== this.state.currentPage) {
+            this.indexOfLastCard();
+            setTimeout(() => {
+                this.indexOfFirstCard();
+                this.currentCards()
+            }, 100);
+        }
+
+        if (prevProps.recipes === this.props.recipes && prevState.sortState !== this.state.sortState) {
+            this.indexOfLastCard();
+            setTimeout(() => {
+                this.indexOfFirstCard();
+                this.currentCards()
+            }, 100);
+        }
+
     }
 
     async loadAllRecipes(e) {
@@ -65,9 +85,9 @@ export class Home extends React.Component {
     };
     
     
-    async handleFilterDiet(e) {
+    handleFilterDiet(e) {
         e.preventDefault();
-        await this.props.filterRecipeDiets(e.target.value);
+        this.props.filterRecipeDiets(e.target.value);
         this.setState({currentPage: 1})
         
     };
@@ -75,8 +95,7 @@ export class Home extends React.Component {
     handleSorts(e) {
         e.preventDefault();
         this.props.sortRecipes(e.target.value)
-        this.setState({currentPage: 1})
-        this.setState({sort: e.target.value})
+        this.setState({sortState: e.target.value})
         
     }
     
@@ -91,20 +110,20 @@ export class Home extends React.Component {
     scrollToTop(e){
         e.preventDefault();
         window.scrollTo({
-        top: 0, 
-        behavior: 'smooth'
-        })};
-                        
+        top: 0,
+        behavior:'smooth'
+        })
+    };
+
     render() {
         return (
             <div  className="home-wrap">
-            { this.state.diets && (
-                <>
             <img alt="" src={clientBackground} className="home-bg" />
                 <div className="home">
-                    <NavBar/>
+                    <NavBar />
                     
                     <button id="top" onClick={(e) => this.loadAllRecipes(e)}>Load all recipes</button>
+
                     <select onChange={(e) => this.handleFilterDiet(e)}>
                             <option value='allDiets'>All diets</option>
                         {this.state.diets.map(diets =>
@@ -115,22 +134,24 @@ export class Home extends React.Component {
                     </select> 
 
                     <button onClick={() => this.toggleMenu()}>Sort</button>
-                    <ul  style={{"display": this.state.visibility ? 'inline' : 'none', "listStyleType": "none"}}>
-                        <li> By name </li>
-                            <select onChange={(e) => this.handleSorts(e)} name='alphabetically'>
-                                <option value="alphaUp" >A-Z</option>
-                                <option value="alphaDown" >Z-A</option>
-                            </select>
-                        <li> By Health Score </li>
-                            <select  onChange={(e) => this.handleSorts(e)} name='healthScore'>
-                                <option value="hScoreUp" >1 - 100</option>
-                                <option value="hScoreDown" >100 - 1</option>
-                            </select>
+                    <ul style={{"display": this.state.visibility ? 'inline' : 'none', "listStyleType": "none"}}>
+                        <div className="sorts">
+                            <li > By name </li>
+                                <select onChange={(e) => this.handleSorts(e)} name='alphabetically'>
+                                    <option value="alphaUp" >A-Z</option>
+                                    <option value="alphaDown" >Z-A</option>
+                                </select>
+                            <li> By Health Score </li>
+                                <select  onChange={(e) => this.handleSorts(e)} name='healthScore'>
+                                    <option value="hScoreUp" >1 - 100</option>
+                                    <option value="hScoreDown" >100 - 1</option>
+                                </select>
+                        </div>
                     </ul>
 
                     <Paginado cardsPerPage={this.state.cardsPerPage} recipes={this.props.recipes.length} paginado={this.paginado}/>
 
-                    <div>
+                    <div className="homeCards">
                     {(this.state.currentCards).map(r => {
                         return <RecipeCard
                             key={r.id}
@@ -149,13 +170,7 @@ export class Home extends React.Component {
                 <button onClick={(e) => this.scrollToTop(e)}>Back to top</button>
                 </div>
 
-
-
-                </>
-            )}
             </div>
-
-
         );
     }
 

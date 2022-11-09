@@ -13,20 +13,15 @@ const router = express.Router();
 router.get('/recipes', async (req, res) => {
     const {name} = req.query;
     const allRecipes = await getAllRecipes();
-    try {
         if(name){
-            let recipes = await allRecipes.filter(recip => recip.name.toLowerCase().includes(name.toLowerCase()));
+            let recipes =  allRecipes.filter(recip => recip.name.toLowerCase().includes(name.toLowerCase()));
             if (recipes.length > 0) {
-                res.status(200).send(recipes)
+            return res.status(200).send(recipes)
             } else {
-            res.status(404).send('No existe ninguna receta con ese nombre.');
+            return res.status(404).send('No existe ninguna receta con ese nombre.');
         }}  else {
-            res.status(200).send(allRecipes) 
+            return res.status(200).send(allRecipes) 
         }          
-    }
-    catch (e) {
-        res.status(404).send(e.message);
-    }
 });
 
 router.get('/recipes/:id', async (req, res) => {
@@ -78,7 +73,9 @@ router.get('/diets', async (req, res) => {
                 where: {name : diet},
             })
         })
+
         const showDiets = await Diet.findAll();
+
         res.status(200).send(showDiets)
     } catch (e) {
         res.status(404).send(e.message);

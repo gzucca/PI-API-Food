@@ -38,7 +38,7 @@ function RecipeCard({ name, img, diets, id, dishTypes }) {
 
     return (
         <div className='recipeCard' >
-            <Link to={`/recipe/${id}`}><h2>{name}</h2></Link>
+            <Link className='header' to={`/recipe/${id}`}><h2>{name}</h2></Link>
             <h4>
                 {dietsNewArray(diets).map(e => {
                 return e})}
@@ -47,7 +47,7 @@ function RecipeCard({ name, img, diets, id, dishTypes }) {
                 {dishTypes.length && 
                 (<h5> {dishTypesNewArray(dishTypes).map(e => {return e})} </h5>)}
             
-                <Link to={`/recipe/${id}`}><img height="400px" src={img} alt="imagen" /></Link>
+                <Link className='ImageContainer' to={`/recipe/${id}`}><img height="400px" src={img} alt="imagen" /></Link>
         </div>
     )
 }

@@ -19,12 +19,7 @@ function App() {
         <Route exact path="/createrecipe" component={CreateRecipe} />
 
         <Route exact path="/recipe/:id" component={RecipeDetail} />
-{/* 
 
-        <Route path="/movie/:id" prop component={MovieDetail} />
-
-          <Route path="/movies/create" component={CreateMovie} /> */}
-        
       </React.Fragment>
 
     </div>

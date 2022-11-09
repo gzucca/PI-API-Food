@@ -4,6 +4,8 @@ import { getAllDiets, createRecipe } from "../../redux/actions/actions";
 import { Link, useHistory } from 'react-router-dom';
 import './createRecipe.css';
 import createRecipebg from '../../createRecipebg.png'
+import createRecipePreview from '../../createRecipePreview.jpg'
+
 
 
 function validate(newRecipe) {
@@ -12,11 +14,11 @@ function validate(newRecipe) {
     if (!newRecipe.name) {
         errors.name = "Name is required"
     } 
-    else if (!newRecipe.summary) {
-        errors.summary = "Summary is required"
-    } 
     else if (!newRecipe.diets.length) {
         errors.diets = "A diet is required"
+    } 
+    else if (!newRecipe.summary) {
+        errors.summary = "Summary is required"
     } 
     else if (!newRecipe.steps.length) {
         errors.steps = "A step is required"
@@ -179,10 +181,10 @@ const CreateRecipe = () => {
         }))
     }
     
-    const handleSubmitRecipe = function (e) { 
+    const handleSubmitRecipe = async function (e) { 
         e.preventDefault();
         if(newRecipe.name && newRecipe.summary && newRecipe.diets && newRecipe.steps) {
-            dispatch(createRecipe(newRecipe))
+            await dispatch(createRecipe(newRecipe))
             setNewRecipe({
                 name: '',
                 summary: '',
@@ -192,8 +194,8 @@ const CreateRecipe = () => {
                 steps: [],
                 diets: [], 
             })
-            alert('Recipe created!')
-            history.push("/home")
+            alert('Recipe created!');
+            history.push("/home");
         } else {
             alert('Please fill out all required fields')
         }
@@ -204,42 +206,65 @@ const CreateRecipe = () => {
     return (
         <div className='createRecipe-wrap'>
         <img className='createRecipebg' alt="" src={createRecipebg} />
+
             <div className='createRecipe'>
 
-                <Link to='/home'><button>Back</button></Link>
+                <Link to='/home'><button className='createRecipeBackButton'>Back</button></Link>
 
-                <h1>Create Recipe</h1>
+                <h1 className='title'>Create Recipe</h1>
 
-                <form>
-                    {!newRecipe.steps.length? <button type='submit'  disabled >SUBMIT</button> :
-                    <button type='submit'  disabled={Object.keys(errors).length} onClick={(e) => handleSubmitRecipe(e)}>SUBMIT</button>}
 
-                    <div>
+                {!newRecipe.steps.length? <button type='submit' className='submitButton'  disabled >SUBMIT</button> :
+                    <button type='submit' className='submitButton'   disabled={Object.keys(errors).length} onClick={(e) => handleSubmitRecipe(e)}>SUBMIT</button>}
+
+                <div className='container' >
+                <form className='parent'>
+ 
+                    <div className='name'>
                         <label>Name*: </label>
-                        <input type="text" value={newRecipe.name} name='name' maxLength="255" required onChange={handleChange}/>
-                        {errors.name && (<p>{errors.name}</p>)}
                     </div>
-
-                    <div>
-                        <label>HealthScore: </label>
-                        <input type="text" value={newRecipe.healthScore} name='healthScore' placeholder='1-100' onChange={handleChange}/>
-                        {errors.healthScore && (<p>{errors.healthScore}</p>)}
+                    <div className='nameInput'>
+                        <input type="text" value={newRecipe.name} name='name' maxLength="60" required onChange={handleChange}/>
+                        {errors.name && (<p className='error'>{errors.name}</p>)}
                     </div>
+                    
 
-                    <div>
-                        <label>Summary*: </label>
-                        <textarea name="summary" cols="50" rows="2" value={newRecipe.summary} maxLength="255" required onChange={handleChange} />
-                        {errors.summary && (<p>{errors.summary}</p>)}
-                    </div>
-
-                    <div>
+                    <div className='image'>
                         <label>Image: </label>
+                    </div>
+                    <div className='imageInput'>
                         <input type="url" value={newRecipe.image} placeholder='URL' name="image" onChange={handleChange} />
-                        {errors.image && (<p>{errors.image}</p>)}
+                        {errors.image && (<p className='error'>{errors.image}</p>)}
                     </div>
 
-                    <div>
+
+                    <div className='healthScore'>
+                        <label>HealthScore: </label>
+                    </div>
+                    <div className='healthScoreInput'>
+                        <input type="text" value={newRecipe.healthScore} name='healthScore' placeholder='1-100' onChange={handleChange}/>
+                        {errors.healthScore && (<p className='error'>{errors.healthScore}</p>)}
+                    </div>
+
+                    <div className='diets'>
+                        <label>Diets*: </label>
+                    </div>
+                    <div className='dietsInput'>
+                        <select >
+                                { diets.length && diets.map(diet =>
+                                    <option key={diet.id} value={diet.name} >
+                                        {diet.name}
+                                    </option>
+                                )}
+                        </select> 
+                        <button type='submit' onClick={(e) => handleAddDiet(e)}>ADD</button>
+                        {errors.diets && (<p className='error'>{errors.diets}</p>)}
+                    </div>
+
+                    <div className='dishTypes'>
                         <label>Dish types: </label>
+                    </div>
+                    <div className='dishTypesInput'>
                         <select >
                                 {dishTypes.names.map(dishType =>
                                     <option key={dishType.charAt(1) + dishType.charAt(3) +  dishType.charAt(5)} value={dishType} >
@@ -250,61 +275,82 @@ const CreateRecipe = () => {
                         <button type='submit' onClick={(e) => handleAddDish(e)}>ADD</button>
                     </div>
 
-                    <div>
-                        <ul> Dish types added:
-                            { newRecipe.dishTypes.map(dishType => 
-                                <div key={dishType.charAt(0) + dishType.charAt(3) + dishType.charAt(2)}  >
-                                    <li value={dishType} key={dishType}>{dishType}</li>
-                                    <button type='submit' onClick={(e) => handleDeleteDish(e)}>X</button>
-                                </div>
-                            ) }
-                        </ul>
+                    <div className='summary'>
+                        <label>Summary*: </label>
+                    </div>
+                    <div className='summaryInput'>
+                        <textarea name="summary" value={newRecipe.summary} maxLength="255" required onChange={handleChange} />
+                        {errors.summary && (<p className='error'>{errors.summary}</p>)}
                     </div>
 
-                    <div>
-                        <label>Diets*: </label>
-                        <select >
-                                { diets.length && diets.map(diet =>
-                                    <option key={diet.id} value={diet.name} >
-                                        {diet.name}
-                                    </option>
-                                )}
-                        </select> 
-                        <button type='submit' onClick={(e) => handleAddDiet(e)}>ADD</button>
-                        {errors.diets && (<p>{errors.diets}</p>)}
+                    <div className='steps'>
+                        <label>Steps*: </label>
+                    </div>
+                    <div className='stepsInput'>
+                        <textarea type="text" value={newStep.step} name='step' maxLength="255" required onChange={handleChangeStep}/>
+                        <button type='submit' onClick={(e) => handleAddStep(e)}>ADD STEP</button>
+                        <button type='submit' onClick={(e) => handleDeleteSteps(e)}>DELETE STEPS</button>
+                        {errors.steps && (<p className='error'>{errors.steps}</p>)}
                     </div>
 
-                    <div>
-                        <ul> Diets added:
+
+
+                    <div className='divider'></div>
+
+                    
+
+
+                    <div className='previewName'>
+                        <h1>{ newRecipe.name? newRecipe.name : 'Título'}</h1>
+                    </div>
+
+                    <div className='previewImage'>
+                        <img alt='preview' src={ newRecipe.image? ((/(https?:\/\/.*\.(?:png|jpg))/i.test(newRecipe.image)) === true? newRecipe.image : createRecipePreview) : createRecipePreview}></img>
+                    </div>
+
+                    <div className='previewDiets'>
+                        <h3> Diets added: </h3>
+                        <div className='previewDietsList'>
+                        
                             { newRecipe.diets.map(diet => 
                                 <div key={diet.charAt(0) + diet.charAt(3) + diet.charAt(2)}  >
-                                    <li value={diet} key={diet}>{diet}</li>
+                                    <p value={diet} key={diet}>{diet}</p>
                                     <button type='submit' onClick={(e) => handleDeleteDiet(e)}>X</button>
                                 </div>
                             ) }
-                        </ul>
+                        </div>
                     </div>
 
-                    <div>
-                        <label>Steps*: </label>
-                        <textarea cols="50" rows="2" type="text" value={newStep.step} name='step' maxLength="255" required onChange={handleChangeStep}/>
-                        <button type='submit' onClick={(e) => handleAddStep(e)}>ADD STEP</button>
-                        <button type='submit' onClick={(e) => handleDeleteSteps(e)}>DELETE STEPS</button>
-                        {errors.steps && (<p>{errors.steps}</p>)}
+                    <div className='previewDish'>
+                        <h3> Dish types added: </h3>
+                        <div className='previewDishTypesList'>
+                            { newRecipe.dishTypes.map(dishType => 
+                                <div key={dishType.charAt(0) + dishType.charAt(3) + dishType.charAt(2)}  >
+                                    <p value={dishType} key={dishType}>{dishType}</p>
+                                    <button type='submit' onClick={(e) => handleDeleteDish(e)}>X</button>
+                                </div>
+                            ) }
+                        </div>
                     </div>
 
-                    <div>
-                        <ul> Steps added:
+                    <div className='previewSummary'>
+                        <h3>Summary</h3>
+                        <p>{newRecipe.summary}</p>
+                    </div>
+
+                    <div className='previewSteps'>
+                        <h3> Instructions: </h3>
                             {newRecipe.steps.map(step => 
-                                <li required key={step}>{step}</li>
+                                <p required key={step}>{step}</p>
                             )}
-                        </ul>
                     </div>
+
+
 
                 </form>
+                </div>
 
 
-                    
             </div>
         </div>
     );

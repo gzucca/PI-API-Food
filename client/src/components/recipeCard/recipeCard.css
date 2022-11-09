@@ -1,19 +1,132 @@
-.recipeCard h2 {
-    font-size:x-large;
+.recipeCard {
+    width: 30vw;
+    height: 40vh;
+    text-overflow: ellipsis;
+    margin: 10px 0px 0px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(2, 0.5fr) 3fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+
+.header {
+    /* width: 270px;
+    height: 200px; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 1 / 1 / 2 / 2; 
+}
+
+.header :hover {
+    /* width: 270px;
+    height: 200px; */
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 1 / 1 / 2 / 2; 
+    color: grey;
+}
+
+.header h2 {
+    font-size: 1.3vw;
     color: white;
     text-decoration: none;
     text-decoration-color: white;
+    margin: 6px 3px 6px;
 }
 
-
-.recipeCard h2:hover {
-    font-size:x-large;
-    color: grey;
+.recipeCard h4 {
+    font-size: 1vw;
+    color: white;
     text-decoration: none;
-    text-decoration-color: grey;
+    text-decoration-color: white;
+    margin: 5px 3px 5px;
+    inline-size: wrap;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    grid-area: 2 / 1 / 3 / 2;
 }
 
-.recipeCard img {
-    width: 540px;
-    height: 400px;
+.recipeCard h5 {
+    font-size: 0.8vw;
+    color: white;
+    text-decoration: none;
+    text-decoration-color: white;
+    font-style: italic;
+    margin: 2px 3px 2px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+
+
+.ImageContainer {
+    /* width: 270px;
+    height: 200px; */
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    grid-area: 4 / 1 / 5 / 2;
+
+
+}
+
+.ImageContainer :hover {
+    /* width: 270px;
+    height: 200px; */
+    border-radius: 20px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    grid-area: 4 / 1 / 5 / 2;
+
+}
+
+
+.ImageContainer img {
+    /* width: 270px;
+    height: 200px; */
+    border-radius: 20px;
+
+    max-width:270px;
+    max-height:200px;
+    height: 100%;
+    width: auto;
+
+    
+
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+
+
 }

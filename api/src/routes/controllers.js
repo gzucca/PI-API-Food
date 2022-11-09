@@ -7,7 +7,8 @@ const myJson = require ("../../complexSearch2.json");
 //traemos todas las recetas de la API
 
 
-const getRecipesFromApi =  () => {
+const getRecipesFromApi = () => {
+    try {
     // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
     const recipesFromApi = myJson
     // const dataRecipesApi = recipesFromApi.data.results;
@@ -23,9 +24,7 @@ const getRecipesFromApi =  () => {
             dishTypes: recip.dishTypes,
             steps: recip.analyzedInstructions.map((steps) => {
                 return steps.steps.map((step) => { 
-                    let stepNumber = step.number;
-                    let stepText = step.step;
-                    return (stepNumber + ": "+ stepText)
+                    return step.step;
                 })
             }).flat(1),
 
@@ -34,10 +33,15 @@ const getRecipesFromApi =  () => {
 
     // console.log(resultadosApi);
     return resultsApi;
-};
+
+    } catch (error) {
+        console.log('No se pudo contactar a la API para descargar las recetas', error.message);
+    }
+}
 
 
 const getRecipesFromDB = async () => {
+    try{
     return await Recipe.findAll({
         include:{
             model: Diet,
@@ -47,9 +51,13 @@ const getRecipesFromDB = async () => {
             },
         }
     });
-};
+    } catch (error) {
+        console.log('No se pudo crear la receta en la Base de Datos', error.message);
+    }
+}
 
-const getAllDiets =  () => {
+const getAllDiets = async () => {
+    try{
     // const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=50`)
     const dietsFromApi = myJson
     // const dataDietsApi = dietsFromApi.data.results;
@@ -76,11 +84,12 @@ const getAllDiets =  () => {
         }
     }
 
-    // console.log("Total de dietas:", diets);
-
-
     return diets;
-};
+
+    } catch (error) {
+        console.log('No se pudo contactar a la API para descargar las dietas', error.message);
+    }
+}
 
 // const getAllDishTypes =  () => {
 

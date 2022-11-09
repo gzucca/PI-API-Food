@@ -13,7 +13,7 @@ function NavBar() {
 
     const dispatch = useDispatch();
 
-    function  handleSubmit(e){
+    function handleSubmit(e){
         e.preventDefault();
         dispatch(getRecipes(recipeState.name))
         setRecipeState({

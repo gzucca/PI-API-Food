@@ -16,8 +16,9 @@ function RecipeDetail() {
     
     useEffect(() => {
         dispatch(getRecipeDetail(id));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []); 
+
     let dietsNewArray = (diets) => {
         let newArray = []
         for (let i = 0; i < diets.length; i++) {
@@ -49,30 +50,33 @@ function RecipeDetail() {
         <img alt="" src={recipeDetailbg} className='recipeDetailbg' />
             {recipe.diets && recipe.name? 
                 <div className='recipeDetail'> 
-                <Link to='/home'><button>Back</button></Link>
 
-                    <div > <h1>{recipe.name}</h1> </div> 
+                <div className='recipeDetail_title' > <h1>{recipe.name}</h1> </div> 
+
+                    <div className='recipeDetail_container'> 
+                        <Link className='recipeDetail_backButton' to='/home'><button>Back</button></Link>
+
+                        <div className='recipeDetail_image' > <img src={recipe.image? recipe.image : oldReliable} alt="Not found" /> </div>
+
+                        <div className='recipeDetail_healthScore'>  {recipe.healthScore && (<h2>Health Score: {recipe.healthScore}</h2>)} </div>
+                        
+                        <div className='recipeDetail_diets'> <h3>Compatible diets: {dietsNewArray(recipe.diets).map(e => e)}</h3> </div>                    
+
+                        <div className='recipeDetail_dishTypes'>  {recipe.dishTypes.length && (<h3>Dish Types: {dishTypesNewArray(recipe.dishTypes).map (e => e)} </h3>)} </div>
+
+                        <div className='recipeDetail_summary' ><p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p></div>
                     
-                    <div > <img src={recipe.image? recipe.image : oldReliable} alt="Not found" /> </div>
+                        {recipe.steps.length?
+                        (<>  
+                            <div className='recipeDetail_preparation' ><h2>Preparation:</h2></div> 
 
-                    <div >  {recipe.healthScore && (<h2>Health Score: {recipe.healthScore}</h2>)} </div>
-                    
-                    <div>  {recipe.dishTypes.length && (<h3>Dish Types: {dishTypesNewArray(recipe.dishTypes).map (e => e)} </h3>)} </div>
-
-                    <div> <h3>Compatible diets: {dietsNewArray(recipe.diets).map(e => e)}</h3> </div>                    
-
-                    <div ><p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p></div>
-                
-                    {recipe.steps.length?
-                    (<>  
-                        <div ><h2>Preparation:</h2></div> 
-
-                        <div>
-                            <ul>
-                            {recipe.steps.map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
-                            </ul>
-                        </div>
-                    </>) : null}
+                            <div className='recipeDetail_steps'>
+                                <ul>
+                                {recipe.steps.map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
+                                </ul>
+                            </div>
+                        </>) : null}
+                    </div>
 
                 </div> 
 
