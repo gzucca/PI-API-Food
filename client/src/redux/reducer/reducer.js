@@ -1,4 +1,4 @@
-import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, GET_RECIPES, SORT_RECIPES, CREATE_RECIPE, GET_RECIPE_DETAIL } from "../actions/actions";
+import { FILTER_RECIPE_DIETS, GET_ALL_DIETS, GET_ALL_RECIPES, LOAD_ALL_RECIPES, GET_RECIPES, SORT_RECIPES, CREATE_RECIPE, GET_RECIPE_DETAIL } from "../actions/actions";
 
 
 const initialState = {
@@ -17,6 +17,14 @@ const rootReducer = (state = initialState, action) => {
             recipes: action.payload,
             allRecipes: action.payload
         }
+
+        case LOAD_ALL_RECIPES:
+            let allRecip = state.allRecipes
+            return {
+            ...state,
+            recipes: allRecip,
+        }
+
 
         case GET_RECIPES:
             return {
@@ -82,6 +90,12 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             recipeDetail: recipeDetails,
         }
+
+        case 'CLEAN_RECIPE':
+            return {
+            ...state,
+            recipeDetail: [],
+            }
         
 
         default:

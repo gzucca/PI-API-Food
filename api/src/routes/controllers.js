@@ -9,10 +9,10 @@ const myJson = require ("../../complexSearch2.json");
 
 const getRecipesFromApi = async () => {
     try {
-    const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
-    // const recipesFromApi = myJson
-    const dataRecipesApi = recipesFromApi.data.results;
-    // const dataRecipesApi = recipesFromApi.results;
+    // const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
+    const recipesFromApi = myJson
+    // const dataRecipesApi = recipesFromApi.data.results;
+    const dataRecipesApi = recipesFromApi.results;
     const resultsApi = dataRecipesApi.map((recip) => {
         return {
             id: recip.id,
@@ -24,7 +24,9 @@ const getRecipesFromApi = async () => {
             dishTypes: recip.dishTypes,
             steps: recip.analyzedInstructions.map((steps) => {
                 return steps.steps.map((step) => { 
-                    return step.step;
+                    let stepNumber = step.number;
+                    let stepText = step.step;
+                    return (stepNumber + ": "+ stepText)
                 })
             }).flat(1),
 
@@ -58,10 +60,10 @@ const getRecipesFromDB = async () => {
 
 const getAllDiets = async () => {
     try{
-    const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=50`)
-    // const dietsFromApi = myJson
-    const dataDietsApi = dietsFromApi.data.results;
-    // const dataDietsApi = dietsFromApi.results;
+    // const dietsFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=50`)
+    const dietsFromApi = myJson
+    // const dataDietsApi = dietsFromApi.data.results;
+    const dataDietsApi = dietsFromApi.results;
     // console.log(dataRecipesApi);
     const resultsApi = dataDietsApi.map((recip) => {
         return {
@@ -78,13 +80,22 @@ const getAllDiets = async () => {
     let diets = [];
 
     for (let i = 0; i < dietsOneArray.length; i++) {
-        const diet = dietsOneArray[i];
+        let diet = dietsOneArray[i]
+
         if (diets.includes(diet) === false) {
         diets.push(diet)
         }
     }
 
-    return diets;
+    dietsObjectsArray = []
+
+    diets.forEach(diet => {
+        dietsObjectsArray.push({
+            name: diet
+        })
+    });
+
+    return dietsObjectsArray;
 
     } catch (error) {
         console.log('No se pudo contactar a la API para descargar las dietas', error.message);

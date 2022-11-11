@@ -1,26 +1,19 @@
-import axios from 'axios';
-
+import axios from 'axios'
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
-
+export const LOAD_ALL_RECIPES = 'LOAD_ALL_RECIPES';
 export const GET_RECIPES = 'GET_RECIPES';
-
 export const GET_ALL_DIETS = 'GET_ALL_DIETS';
-
 export const FILTER_RECIPE_DIETS = 'FILTER_RECIPE_DIETS';
-
 export const SORT_RECIPES = 'SORT_RECIPES';
-
 export const CREATE_RECIPE = 'CREATE_RECIPE';
-
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 
 
 
 export const getAllRecipes = () => { 
-    
     return async function (dispatch) {
-            try {
-            return await fetch("http://localhost:3001/recipes")
+        try {
+            await fetch("http://localhost:3001/recipes")
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))
         } catch (error) {
@@ -30,11 +23,15 @@ export const getAllRecipes = () => {
     }
 };
 
+export const loadAllRecipes = (payload) => { 
+    return { type: LOAD_ALL_RECIPES, payload: payload }
+};
+
+
 export const getRecipes = (name) => { 
-    
     return async function (dispatch) {
         try {
-            return await fetch(`http://localhost:3001/recipes?name=${name}`)
+            await fetch(`http://localhost:3001/recipes?name=${name}`)
             .then(res => res.json())
             .then(data => dispatch({ type: GET_RECIPES, payload: data }))
         } catch (error) {
@@ -48,7 +45,7 @@ export const getRecipes = (name) => {
 export const getAllDiets = () => { 
     return async function (dispatch) {
             try {
-            return await fetch("http://localhost:3001/diets")
+            await fetch("http://localhost:3001/diets")
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL_DIETS, payload: data }))
             } catch (error) {
@@ -61,7 +58,7 @@ export const getAllDiets = () => {
 export const getRecipeDetail = (id) => { 
     return async function(dispatch) {
         try {
-            return await fetch(`http://localhost:3001/recipes/${id}`)
+            await fetch(`http://localhost:3001/recipes/${id}`)
             .then(res => res.json())
             .then(data => dispatch({ type: GET_RECIPE_DETAIL, payload: data }))
         } catch (error) {
@@ -75,6 +72,11 @@ export const getRecipeDetail = (id) => {
 export const filterRecipeDiets = (payload) => { 
     return { type: FILTER_RECIPE_DIETS, payload: payload }
 };
+
+export const cleanRecipeDetail = (payload) => { 
+    return { type: 'CLEAN_RECIPE', payload: payload }
+};
+
 
 export const sortRecipes = (payload) => { 
     return { type: SORT_RECIPES, payload: payload }

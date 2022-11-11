@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllDiets, createRecipe } from "../../redux/actions/actions";
+import { getAllDiets, createRecipe, getAllRecipes } from "../../redux/actions/actions";
 import { Link, useHistory } from 'react-router-dom';
 import './createRecipe.css';
 import createRecipebg from '../../createRecipebg.png'
@@ -121,7 +121,7 @@ const CreateRecipe = () => {
         e.preventDefault();
         if (newStep.step.length > 0) {
         let newSteps = newRecipe.steps
-        let addStep = newStep.step
+        let addStep = `${newStep.stepNumber}: ${newStep.step}`
         newSteps.push(addStep)
         setNewRecipe({
             ...newRecipe,
@@ -195,6 +195,7 @@ const CreateRecipe = () => {
                 diets: [], 
             })
             alert('Recipe created!');
+            dispatch(getAllRecipes())
             history.push("/home");
         } else {
             alert('Please fill out all required fields')

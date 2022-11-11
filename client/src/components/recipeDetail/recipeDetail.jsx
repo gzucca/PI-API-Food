@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom';
-import { getRecipeDetail } from '../../redux/actions/actions';
+import { getRecipeDetail, cleanRecipeDetail } from '../../redux/actions/actions';
 import './recipeDetail.css';
 import recipeDetailbg from "../../recipeDetailbg.jpg"
 import oldReliable from "../../oldReliable.jpg"
@@ -16,6 +16,9 @@ function RecipeDetail() {
     
     useEffect(() => {
         dispatch(getRecipeDetail(id));
+        return () => {
+            dispatch(cleanRecipeDetail())
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []); 
 
@@ -41,6 +44,14 @@ function RecipeDetail() {
             newArray.push(', ')}
             }   
             newArray.push('.')
+        return newArray
+    }
+
+    let stepsNewArray = (steps) => {
+        let newArray = []
+        for (let i = 0; i < steps.length; i++) {
+            let step = steps[i].slice(3);
+            newArray.push(step)}
         return newArray
     }
     
@@ -72,7 +83,7 @@ function RecipeDetail() {
 
                             <div className='recipeDetail_steps'>
                                 <ul>
-                                {recipe.steps.map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
+                                {stepsNewArray(recipe.steps).map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
                                 </ul>
                             </div>
                         </>) : null}

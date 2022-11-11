@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes } from "../../redux/actions/actions";
+import { getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes, loadAllRecipes } from "../../redux/actions/actions";
 import NavBar from "../navBar/navBar";
 import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
@@ -15,7 +15,6 @@ export class Home extends React.Component {
         super(props);
 
         this.state = {
-            diets: [],
             visibility : false,
             sortState : '',
             currentPage : 1,
@@ -29,59 +28,58 @@ export class Home extends React.Component {
     };
     
     currentCards(){
-        let recipesShown= this.props.recipes.slice(this.state.indexOfFirstCard, this.state.indexOfLastCard)
-        this.setState({currentCards: recipesShown})
+
+        this.setState((state, props) => ({
+            currentCards: props.recipes.slice(state.indexOfFirstCard, state.indexOfLastCard)})
+        )
     }
 
-    indexOfLastCard(){
-        this.setState({indexOfLastCard: (this.state.currentPage * this.state.cardsPerPage)})
+    indexOfLastCard() {
+        this.setState((state) => ({
+            indexOfLastCard: state.currentPage * state.cardsPerPage})
+        )
     }
-
+    
     indexOfFirstCard(){
-        this.setState({indexOfFirstCard: (this.state.indexOfLastCard - this.state.cardsPerPage)})
+        this.setState((state) => ({
+            indexOfFirstCard: state.indexOfLastCard - state.cardsPerPage})
+        )
     }
 
     async componentDidMount(){
-        await this.props.getAllRecipes();
-        await this.props.getAllDiets()
-        this.setState({
-            diets: this.props.diets
-        })
+        if (this.props.allRecipes.length === 0){
+            console.log('Se cargaron todas las recetas');
+            await this.props.getAllRecipes();
+        }
+        if (this.props.diets.length === 0){
+            console.log('Se cargaron todas las dietas');
+            await this.props.getAllDiets()
+        }
+        this.indexOfLastCard();
+        this.indexOfFirstCard();
+        this.currentCards()
     }
 
     componentDidUpdate(prevProps, prevState){
         if (prevState.currentPage === this.state.currentPage && prevProps.recipes !== this.props.recipes) {
             this.setState({
-                currentPage: 1,
-            })
+                currentPage: 1})
             this.indexOfLastCard();
-            setTimeout(() => {
-                this.indexOfFirstCard();
-                this.currentCards()
-            }, 100);
+            this.indexOfFirstCard();
+            this.currentCards()
         }
 
-        if (prevState.currentPage !== this.state.currentPage) {
+        if ((prevState.currentPage !== this.state.currentPage) || (prevProps.recipes === this.props.recipes && prevState.sortState !== this.state.sortState)) {
             this.indexOfLastCard();
-            setTimeout(() => {
-                this.indexOfFirstCard();
-                this.currentCards()
-            }, 100);
-        }
-
-        if (prevProps.recipes === this.props.recipes && prevState.sortState !== this.state.sortState) {
-            this.indexOfLastCard();
-            setTimeout(() => {
-                this.indexOfFirstCard();
-                this.currentCards()
-            }, 100);
+            this.indexOfFirstCard();
+            this.currentCards()
         }
 
     }
 
     async loadAllRecipes(e) {
         e.preventDefault();
-        await this.props.getAllRecipes()
+        await this.props.loadAllRecipes()
     };
     
     
@@ -97,6 +95,15 @@ export class Home extends React.Component {
         this.props.sortRecipes(e.target.value)
         this.setState({sortState: e.target.value})
         
+    }
+
+    handlePrevious(e){
+        e.preventDefault();
+        if (this.state.currentPage !== 1) {
+            this.setState({
+                currentPage: this.state.currentPage - 1
+            })
+        }
     }
     
     toggleMenu() {
@@ -126,7 +133,7 @@ export class Home extends React.Component {
 
                     <select onChange={(e) => this.handleFilterDiet(e)}>
                             <option value='allDiets'>All diets</option>
-                        {this.state.diets.map(diets =>
+                        {this.props.diets.map(diets =>
                             <option key={diets.id} value={diets.name} >
                                 {diets.name}
                             </option>
@@ -149,6 +156,7 @@ export class Home extends React.Component {
                         </div>
                     </ul>
 
+                    <button onClick={(e) => this.handlePrevious(e)}>Previous</button>
                     <Paginado cardsPerPage={this.state.cardsPerPage} recipes={this.props.recipes.length} paginado={this.paginado}/>
 
                     <div className="homeCards">
@@ -179,8 +187,9 @@ export class Home extends React.Component {
 function mapStateToProps(state) {
     return {
         diets: state.diets,
-        recipes: state.recipes
+        recipes: state.recipes,
+        allRecipes: state.allRecipes
     };
 }
 
-export default connect(mapStateToProps, {getAllDiets, filterRecipeDiets, getAllRecipes, sortRecipes})(Home);
+export default connect(mapStateToProps, {getAllDiets, filterRecipeDiets, getAllRecipes, loadAllRecipes, sortRecipes})(Home);
