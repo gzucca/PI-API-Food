@@ -10,11 +10,12 @@ export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 
 // const fetchApi = fetchAbsolute(fetch)('http://localhost:3001');
-const fetchApi = fetchAbsolute(fetch)('https://api-food-backend-production.up.railway.app');
+const fetchApi = fetchAbsolute(fetch)(process.env.REACT_APP_API)
 
 export const getAllRecipes = () => { 
     return async function (dispatch) {
         try {
+            console.log(fetchApi);
             await fetchApi("/recipes")
             .then(res => res.json())
             .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))
