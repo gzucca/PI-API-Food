@@ -10,16 +10,16 @@ export const CREATE_RECIPE = 'CREATE_RECIPE';
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL';
 
 // const fetchApi = fetchAbsolute(fetch)('http://localhost:3001');
-const fetchApi = fetchAbsolute(fetch)('https://meaty-deer-production.up.railway.app')
+const fetchApi = fetchAbsolute(fetch)( 'https://meaty-deer-production.up.railway.app')
 
 export const getAllRecipes = () => { 
     return async function (dispatch) {
         try {
-            console.log(fetchApi);
             await fetchApi("/recipes")
-            .then(res => res.json())
+            .then(res => res.json())    
             .then(data => dispatch({ type: GET_ALL_RECIPES, payload: data }))
-        } catch (error) {
+
+        } catch (error) {   
             alert ('No se pudieron descargar recetas')
             console.log(error)
         }
@@ -88,7 +88,7 @@ export const sortRecipes = (payload) => {
 export const createRecipe = (payload) => { 
     return async function () { 
     try {
-        const res = await axios.post('/recipes', payload);
+        const res = await axios.post('recipes', payload);
         return res;
     } catch (error) {
         alert('No se pudo crear la receta')
