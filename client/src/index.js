@@ -10,7 +10,7 @@ import axios from "axios"
 
 
 // axios.defaults.baseURL = 'http://localhost:3001'
-axios.defaults.baseURL = 'https://api-food-backend-production.up.railway.app'
+axios.defaults.baseURL = 'meaty-deer-production.up.railway.app'
 
 
 ReactDOM.render(
