@@ -38,7 +38,7 @@ export const getRecipes = (name) => {
             .then(res => res.json())
             .then(data => dispatch({ type: GET_RECIPES, payload: data }))
         } catch (error) {
-            alert ('No se pudieron encontrar recetas para esa búsqueda')
+            alert ('No se pudieron encontrar recetas para esa búsqueda.')
             console.log(error)
         }
         
