@@ -1,22 +1,21 @@
 .recipeCard {
-    width: 30vw;
-    height: 40vh;
-    text-overflow: ellipsis;
-    margin: 10px 0px 0px;
-
+    width: minmax(4rem, 6rem);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr repeat(2, 0.5fr) 3fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    background-color: rgba(95, 158, 160, 0.407);
+    border-radius: 10%;
+    border-width: 5px;
+    border-color: black;
+    border-style: solid;
 }
 
 
 .header {
     /* width: 270px;
     height: 200px; */
-    width: 100%;
-    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,19 +23,11 @@
 }
 
 .header :hover {
-    /* width: 270px;
-    height: 200px; */
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-area: 1 / 1 / 2 / 2; 
     color: grey;
 }
 
 .header h2 {
-    font-size: 1.3vw;
+    font-size: minmax(12px, 24px);
     color: white;
     text-decoration: none;
     text-decoration-color: white;
@@ -44,7 +35,7 @@
 }
 
 .recipeCard h4 {
-    font-size: 1vw;
+    font-size: minmax(12px, 24px);
     color: white;
     text-decoration: none;
     text-decoration-color: white;
@@ -57,7 +48,7 @@
 }
 
 .recipeCard h5 {
-    font-size: 0.8vw;
+    font-size: minmax(12px, 24px);
     color: white;
     text-decoration: none;
     text-decoration-color: white;
@@ -72,10 +63,6 @@
 
 
 .ImageContainer {
-    /* width: 270px;
-    height: 200px; */
-    width: 100%;
-    height: auto;
     border-radius: 20px;
     overflow: hidden;
 
@@ -92,8 +79,6 @@
 }
 
 .ImageContainer :hover {
-    /* width: 270px;
-    height: 200px; */
     border-radius: 20px;
     overflow: hidden;
 
@@ -110,8 +95,6 @@
 
 
 .ImageContainer img {
-    /* width: 270px;
-    height: 200px; */
     border-radius: 20px;
 
     max-width:270px;
