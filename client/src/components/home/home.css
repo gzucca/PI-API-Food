@@ -41,14 +41,19 @@
 }
 
 .homeCards {
+    margin-block: 24px;
+    width: 80vw;
     display: grid;
-    margin-inline: 2rem;
+    gap: 1rem;
+    row-gap: 2rem;
+    margin-inline: auto;
     grid-template-columns: repeat(
-        auto-fit,
+        auto-fill,
         minmax(
-            360px,
+            min(20rem, 100%),
             1fr
         )
     );
-    gap: 32px;
+    grid-auto-rows: 26rem;
+    
 }
