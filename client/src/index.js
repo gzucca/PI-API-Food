@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store.js';
 import './index.css';
 
+
 axios.defaults.baseURL=REACT_APP_API||"http://localhost:3001/";
 
 ReactDOM.render(

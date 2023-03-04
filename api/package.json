@@ -6,6 +6,7 @@
 
   "scripts": {
     "start": "nodemon -L",
+    "railway":"node./index.js",
     "test": "mocha -w ./tests/**/*.spec.js"
   },
   "author": "Henry",
