@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 const {Recipe, Diet} = require('../db');
 const {API_KEY} = process.env;
-//const myJson = require ("../../complexSearch2.json");
+const myJson = require ("../../complexSearch2.json");
 
 //traemos todas las recetas de la API
 
