@@ -19,9 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST, PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE
-} = process.env;
+const {PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE} = process.env;
 
 
 
