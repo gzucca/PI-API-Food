@@ -2,8 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 import LandingPage from './components/landing/landing';
 import Home from './components/home/home';
-import CreateRecipe from './components/createRecipe/createRecipe'
-import RecipeDetail from "./components/recipeDetail/recipeDetail";
+import CreateRecipe from './components/createRecipe/createRecipe.jsx'
+import RecipeDetail from "./components/recipeDetail/recipeDetail.jsx";
 import './App.css'
 
 function App() {
