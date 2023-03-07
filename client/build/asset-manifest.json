@@ -1,27 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.80f951fc.chunk.css",
-    "main.js": "/static/js/main.b943abe7.chunk.js",
-    "main.js.map": "/static/js/main.b943abe7.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.4c4a85d6.js",
-    "runtime-main.js.map": "/static/js/runtime-main.4c4a85d6.js.map",
-    "static/js/2.9ed7b06c.chunk.js": "/static/js/2.9ed7b06c.chunk.js",
-    "static/js/2.9ed7b06c.chunk.js.map": "/static/js/2.9ed7b06c.chunk.js.map",
-    "static/js/3.23407b9e.chunk.js": "/static/js/3.23407b9e.chunk.js",
-    "static/js/3.23407b9e.chunk.js.map": "/static/js/3.23407b9e.chunk.js.map",
+    "main.css": "/static/css/main.bd341807.css",
+    "main.js": "/static/js/main.72c3c158.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/clientBackground.png": "/static/media/clientBackground.a7cb75990ec24c312b61.png",
+    "static/media/recipeDetailbg.jpg": "/static/media/recipeDetailbg.bf2f68933c28320dbea8.jpg",
+    "static/media/createRecipebg.png": "/static/media/createRecipebg.86d0c87ddbada8172679.png",
+    "static/media/oldReliable.jpg": "/static/media/oldReliable.855dd7c8914d76df6472.jpg",
+    "static/media/createRecipePreview.jpg": "/static/media/createRecipePreview.c278e68e40af1d5efd81.jpg",
     "index.html": "/index.html",
-    "static/css/main.80f951fc.chunk.css.map": "/static/css/main.80f951fc.chunk.css.map",
-    "static/js/2.9ed7b06c.chunk.js.LICENSE.txt": "/static/js/2.9ed7b06c.chunk.js.LICENSE.txt",
-    "static/media/landing.css": "/static/media/clientBackground.a7cb7599.png",
-    "static/media/createRecipePreview.c278e68e.jpg": "/static/media/createRecipePreview.c278e68e.jpg",
-    "static/media/createRecipebg.86d0c87d.png": "/static/media/createRecipebg.86d0c87d.png",
-    "static/media/oldReliable.855dd7c8.jpg": "/static/media/oldReliable.855dd7c8.jpg",
-    "static/media/recipeDetailbg.bf2f6893.jpg": "/static/media/recipeDetailbg.bf2f6893.jpg"
+    "main.bd341807.css.map": "/static/css/main.bd341807.css.map",
+    "main.72c3c158.js.map": "/static/js/main.72c3c158.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.4c4a85d6.js",
-    "static/js/2.9ed7b06c.chunk.js",
-    "static/css/main.80f951fc.chunk.css",
-    "static/js/main.b943abe7.chunk.js"
+    "static/css/main.bd341807.css",
+    "static/js/main.72c3c158.js"
   ]
 }
