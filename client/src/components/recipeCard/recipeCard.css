@@ -39,15 +39,15 @@
     font-size: 1.3vw;
     color: white;
     text-decoration: none;
-    text-decoration-color: white;
+
     margin: 6px 3px 6px;
 }
 
 .recipeCard h4 {
     font-size: 1vw;
-    color: white;
+
     text-decoration: none;
-    text-decoration-color: white;
+
     margin: 5px 3px 5px;
     inline-size: wrap;
     display: flex;
@@ -58,9 +58,9 @@
 
 .recipeCard h5 {
     font-size: 0.8vw;
-    color: white;
+
     text-decoration: none;
-    text-decoration-color: white;
+
     font-style: italic;
     margin: 2px 3px 2px;
     display: flex;

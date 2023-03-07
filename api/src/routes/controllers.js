@@ -9,7 +9,7 @@ const {API_KEY} = process.env;
 
 const getRecipesFromApi = async () => {
     try {
-     const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
+    const recipesFromApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&includeNutrition=false&addRecipeInformation=true&number=100`)
     //const recipesFromApi = myJson
     const dataRecipesApi = recipesFromApi.data.results;
     //const dataRecipesApi = recipesFromApi.results;
