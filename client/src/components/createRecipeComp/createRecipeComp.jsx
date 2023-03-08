@@ -41,7 +41,7 @@ function validate(newRecipe) {
   return errors;
 }
 
-export default function createRecipe() {
+export default function createRecipeComp() {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
   let history = useHistory();
