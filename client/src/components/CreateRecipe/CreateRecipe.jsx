@@ -35,7 +35,7 @@ function validate(newRecipe) {
     return errors
 };
 
-const CreateRecipe = () => {
+export default function createRecipe() {
 
     const dispatch = useDispatch()
     const diets = useSelector((state) => state.diets)
@@ -357,4 +357,3 @@ const CreateRecipe = () => {
     );
 }
 
-export default CreateRecipe;

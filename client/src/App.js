@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import LandingPage from "./components/landing/landing";
 import Home from "./components/home/home";
-import CreateRecipe from "./components/createRecipe/createRecipe";
+import createRecipe from "./components/createRecipe/createRecipe";
 import RecipeDetail from "./components/recipeDetail/recipeDetail.jsx";
 import "./App.css";
 
@@ -14,7 +14,7 @@ function App() {
 
         <Route exact path="/home" component={Home} />
 
-        <Route exact path="/createrecipe" component={CreateRecipe} />
+        <Route exact path="/createrecipe" component={createRecipe} />
 
         <Route exact path="/recipe/:id" component={RecipeDetail} />
       </React.Fragment>
