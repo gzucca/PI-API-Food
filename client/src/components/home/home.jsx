@@ -12,6 +12,7 @@ import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
 import "./home.css";
 import oldReliable from "../../oldReliable.jpg";
+import Spinner from "../spinner/spinner";
 
 export class Home extends React.Component {
   constructor(props) {
@@ -145,7 +146,7 @@ export class Home extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="home__background">
         <NavBar />
         <div className="home__container">
           <div className="filters__container">
@@ -193,21 +194,25 @@ export class Home extends React.Component {
             <button onClick={(e) => this.handleNext(e)}>Next</button>
           </div>
 
-          <div className="homeCards">
-            {this.state.currentCards.map((r) => {
-              return (
-                <RecipeCard
-                  key={r.id}
-                  name={r.name}
-                  diets={r.diets}
-                  img={r.image ? r.image : oldReliable}
-                  id={r.id}
-                  healthScore={r.healthScore}
-                  dishTypes={r.dishTypes}
-                />
-              );
-            })}
-          </div>
+          {this.state.currentCards.length === 0 ? (
+            <Spinner />
+          ) : (
+            <div className="homeCards">
+              {this.state.currentCards.map((r) => {
+                return (
+                  <RecipeCard
+                    key={r.id}
+                    name={r.name}
+                    diets={r.diets}
+                    img={r.image ? r.image : oldReliable}
+                    id={r.id}
+                    healthScore={r.healthScore}
+                    dishTypes={r.dishTypes}
+                  />
+                );
+              })}
+            </div>
+          )}
 
           <div className="pages__container">
             <button onClick={(e) => this.handlePrevious(e)}>Previous</button>
@@ -229,7 +234,7 @@ export class Home extends React.Component {
             </button>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

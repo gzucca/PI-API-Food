@@ -83,7 +83,7 @@ function RecipeDetail() {
 
                             <div className='recipeDetail_steps'>
                                 <ul>
-                                {stepsNewArray(recipe.steps).map(step => {return <li key={step.charAt(0) + step.charAt(3) + step.charAt(6)}>{step}</li>})}
+                                {stepsNewArray(recipe.steps).map((step, index) => {return <li key={index}>{step}</li>})}
                                 </ul>
                             </div>
                         </>) : null}

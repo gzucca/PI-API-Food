@@ -1,7 +1,13 @@
+.home__background{
+  background: linear-gradient(90deg, rgba(126,87,47,1) 0%, rgba(196,186,121,1) 20%, rgba(196,186,121,1) 80%, rgba(126,87,47,1) 100%);
+  min-height: 100vh;
+}
+
 .home__container {
   max-width: 1200px;
   margin: auto;
   padding-block: 2rem;
+
 }
 
 .filters__container {

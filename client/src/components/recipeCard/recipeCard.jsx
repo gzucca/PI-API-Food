@@ -59,7 +59,7 @@ function RecipeCard({ name, img, diets, id, dishTypes }) {
 
       <div className="ImageContainer">
         <Link  to={`/recipe/${id}`}>
-          <img height="400px" src={img} alt="imagen" />
+          <img loading="lazy" height="400px" src={img} alt="imagen" />
         </Link>
       </div>
     </div>

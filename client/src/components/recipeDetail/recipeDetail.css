@@ -15,13 +15,14 @@
 .recipeDetail{
     position: relative;
     color: white;
-    padding: 0px 0px 0px;
 }
 
 .recipeDetail_container{
     position: relative;
     background-color: rgba(0, 0, 0, 0.494) ;
-    margin: 20px 100px 20px;
+    width: 80%;
+    margin-inline: auto;
+    margin-block: 2rem;
     padding: 20px 40px 20px;
     border-radius: 10px;
 }
