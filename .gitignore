@@ -106,10 +106,8 @@ dist
 # package-lock.json
 package-lock.json
 
-complexSearch.json
-
-complexSearch2.json
-
-
 process.env
 
+recipes.json
+
+diets.json

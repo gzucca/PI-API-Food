@@ -119,7 +119,7 @@ export class Home extends React.Component {
     e.preventDefault();
     if (
       this.state.currentPage !==
-      Math.ceil(this.state.recipes / this.state.cardsPerPage)
+      Math.ceil(this.props.recipes.length / this.state.cardsPerPage)
     ) {
       this.setState({
         currentPage: this.state.currentPage + 1,
@@ -188,6 +188,7 @@ export class Home extends React.Component {
               cardsPerPage={this.state.cardsPerPage}
               recipes={this.props.recipes.length}
               paginado={this.paginado}
+              currentPage={this.state.currentPage}
             />
             <button onClick={(e) => this.handleNext(e)}>Next</button>
           </div>
@@ -208,11 +209,16 @@ export class Home extends React.Component {
             })}
           </div>
 
-          <Paginado
-            cardsPerPage={this.state.cardsPerPage}
-            recipes={this.props.recipes.length}
-            paginado={this.paginado}
-          />
+          <div className="pages__container">
+            <button onClick={(e) => this.handlePrevious(e)}>Previous</button>
+            <Paginado
+              cardsPerPage={this.state.cardsPerPage}
+              recipes={this.props.recipes.length}
+              paginado={this.paginado}
+              currentPage={this.state.currentPage}
+            />
+            <button onClick={(e) => this.handleNext(e)}>Next</button>
+          </div>
 
           <div className="backToTop">
             <button

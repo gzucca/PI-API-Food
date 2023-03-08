@@ -1,7 +1,7 @@
 import React from "react";
 import "./paginado.css";
 
-export default function Paginado({ cardsPerPage, recipes, paginado }) {
+export default function Paginado({ cardsPerPage, recipes, paginado, currentPage }) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(recipes / cardsPerPage); i++) {
@@ -16,11 +16,11 @@ export default function Paginado({ cardsPerPage, recipes, paginado }) {
             return (
               <li key={number}>
                 <button
-                  className="paginadoPagina"
+                  className={currentPage === number ? "paginaActual" : "paginadoPagina"}
                   onClick={() => paginado(number)}
+                  
                 >
-                  {" "}
-                  {number}{" "}
+                  {number}
                 </button>
               </li>
             );

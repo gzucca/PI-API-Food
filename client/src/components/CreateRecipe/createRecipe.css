@@ -1,331 +1,342 @@
 .createRecipe-wrap {
-    overflow: hidden;
-    position: relative;
+  overflow: hidden;
+  position: relative;
 }
 
 .createRecipebg {
-    opacity: 0.4;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  opacity: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
-
-.createRecipe{
-    position: relative;
-    color: white
+.createRecipe {
+  position: relative;
+  color: black;
+  font-weight: 500;
 }
 
-.createRecipe textarea{
-    width: 90%;
+.createRecipe textarea {
+  width: 90%;
 }
 
 .createRecipe input {
-    width: 90%;
+  width: 90%;
 }
 
 .createRecipe select {
-    width: 70%;
+  width: 70%;
 }
 
 .error {
-    color: red;
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
-    font-size: x-small;
+  color: red;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  font-size: x-small;
 }
 
-
-.createRecipe label{
-    font-size: larger;
+.createRecipe label {
+  font-size: larger;
 }
 
-.createRecipe h3{
-    margin: 0px 0px 0px;
-    text-align: left;
-    color: white;
-    font-size: 16px;
-
+.createRecipe h3 {
+  margin: 0px 0px 0px;
+  text-align: left;
+  color: black;
+  font-size: 16px;
 }
 
-
-
-.createRecipeBackButton{
-    position: absolute;
-    top: 10px; left: 20px;
-    height: 30px;
-    width: 50px;
-    font-size: large;
-
+.createRecipeBackButton {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: large;
 }
 
-.title{
-    margin: 0px 0px 0px;
-    padding: 10px 0px 10px;
-    background-color: black;
-    text-align: center;
+.title {
+  margin: 0px 0px 0px;
+  padding: 10px 0px 10px;
+  background-color: black;
+  text-align: center;
+  color: white;
 }
 
-.submitButton{
-    position: relative;
-    top: 10px;
-    height: 30px;
-    width: 80px;
-    font-size: large;
-
+.submitButton {
+  position: relative;
+  top: 10px;
+  left: 20px;
+  height: 30px;
+  width: 80px;
+  font-size: large;
 }
 
-.container{
-    padding: 0px 10vw 0vw;
+.container {
+  padding: 0px 10vw 0vw;
 }
 
 .parent {
-    max-height: 90vh;
-    max-width: auto;
-    display: grid;
-    grid-template-columns: 0.3fr 0.5fr 0.1fr 1fr;
-    grid-template-rows: repeat(5, 1fr) 3fr 2fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+  max-height: 90vh;
+  max-width: auto;
+  display: grid;
+  grid-template-columns: 0.3fr 0.5fr 0.1fr 1fr;
+  grid-template-rows: repeat(5, 1fr) 3fr 2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
-.name { grid-area: 1 / 1 / 2 / 2;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.name {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.nameInput { grid-area: 1 / 2 / 2 / 3; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.nameInput {
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-
-.image { grid-area: 2 / 1 / 3 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.image {
+  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.imageInput { grid-area: 2 / 2 / 3 / 3; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.imageInput {
+  grid-area: 2 / 2 / 3 / 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-.healthScore { grid-area: 3 / 1 / 4 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.healthScore {
+  grid-area: 3 / 1 / 4 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.healthScoreInput { grid-area: 3 / 2 / 4 / 3; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.healthScoreInput {
+  grid-area: 3 / 2 / 4 / 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-.diets { grid-area: 4 / 1 / 5 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.diets {
+  grid-area: 4 / 1 / 5 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.dietsInput { grid-area: 4 / 2 / 5 / 3; 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.dietsInput {
+  grid-area: 4 / 2 / 5 / 3;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-.dishTypes { grid-area: 5 / 1 / 6 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.dishTypes {
+  grid-area: 5 / 1 / 6 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.dishTypesInput { grid-area: 5 / 2 / 6 / 3; 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.dishTypesInput {
+  grid-area: 5 / 2 / 6 / 3;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-.summary { grid-area: 6 / 1 / 7 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: stretch;
+.summary {
+  grid-area: 6 / 1 / 7 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.summaryInput { grid-area: 6 / 2 / 7 / 3; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: stretch;
+.summaryInput {
+  grid-area: 6 / 2 / 7 / 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
 }
 
-.steps { grid-area: 7 / 1 / 8 / 2; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-end;
-    align-content: stretch;
+.steps {
+  grid-area: 7 / 1 / 8 / 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: stretch;
 }
 
-.stepsInput { grid-area: 7 / 2 / 8 / 3; 
+.stepsInput {
+  grid-area: 7 / 2 / 8 / 3;
 }
 
-.divider { grid-area: 1 / 3 / 8 / 4; 
-    width: 5vw;
+.divider {
+  grid-area: 1 / 3 / 8 / 4;
+  width: 5vw;
 }
 
-
-
-.previewName { grid-area: 1 / 4 / 2 / 5; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.previewName {
+  grid-area: 1 / 4 / 2 / 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.previewName h1 { 
-    margin: 0 0 0 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: white;
-    font-family: 'Alex Brush', cursive;
-    font-size: 36px;
+.previewName h1 {
+  margin: 0 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  font-family: "Alex Brush", cursive;
+  font-size: 36px;
 }
 
-.previewImage { grid-area: 2 / 4 / 4 / 5;
+.previewImage {
+  grid-area: 2 / 4 / 4 / 5;
 }
 
 .previewImage img {
-    border-radius: 20px;
+  border-radius: 20px;
 
-    max-width:270px;
-    max-height:200px;
-    height: 100%;
-    width: auto;
+  max-width: 270px;
+  max-height: 200px;
+  height: 100%;
+  width: auto;
 }
 
-
-.previewDiets  { grid-area: 4 / 4 / 5 / 5; 
+.previewDiets {
+  grid-area: 4 / 4 / 5 / 5;
 }
 
-.previewDietsList  {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding-bottom: 0px;
+.previewDietsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding-bottom: 0px;
 }
 
 .previewDietsList p {
-    margin: 0 0 0 0;
+  margin: 0 0 0 0;
 }
 
-.previewDietsList div  {
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
-    order: 0;
-    padding: 1px 5px;
+.previewDietsList div {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  padding: 1px 5px;
 }
 
-.previewDish { grid-area: 5 / 4 / 6 / 5; 
+.previewDish {
+  grid-area: 5 / 4 / 6 / 5;
 }
 
-.previewDishTypesList  {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    padding-bottom: 0px;
+.previewDishTypesList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding-bottom: 0px;
 }
 
 .previewDishTypesList p {
-    margin: 0 0 0 0;
+  margin: 0 0 0 0;
 }
 
-.previewDishTypesList div  {
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
-    align-self: auto;
-    order: 0;
-    padding: 1px 5px;
+.previewDishTypesList div {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  padding: 1px 5px;
 }
 
-
-.previewSummary { grid-area: 6 / 4 / 7 / 5; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-    text-align: left;
+.previewSummary {
+  grid-area: 6 / 4 / 7 / 5;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  text-align: left;
 }
 
 .previewSummary p {
-    word-break: break-all;
+  word-break: break-all;
 }
 
-.previewSteps { grid-area: 7 / 4 / 8 / 5; 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-} 
+.previewSteps {
+  grid-area: 7 / 4 / 8 / 5;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+}
 
 .previewSteps p {
-    text-align: left;
-    word-break: break-all;
-    margin: 0 0 0 0
-} 
+  text-align: left;
+  word-break: break-all;
+  margin: 0 0 0 0;
+}

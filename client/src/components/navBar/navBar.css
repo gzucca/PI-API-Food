@@ -22,8 +22,12 @@
   padding-block: .5rem;
 }
 
-.navBar a:visited {
+.navBar a {
   color: white;
+}
+
+.navBar a:hover {
+  color: grey;
 }
 
 .navBar__form {
