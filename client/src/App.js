@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import LandingPage from "./components/landing/landing";
 import Home from "./components/home/home";
 import RecipeDetail from "./components/recipeDetail/recipeDetail.jsx";
-// import { createRecipe } from "./components/createRecipe/createRecipe";
+import createRecipeComp from "./components/createRecipeComp/createRecipeComp";
 import "./App.css";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
         <Route exact path="/home" component={Home} />
 
-        {/* <Route exact path="/createrecipe" component={createRecipe} /> */}
+        <Route exact path="/createrecipe" component={createRecipeComp} />
 
         <Route exact path="/recipe/:id" component={RecipeDetail} />
       </React.Fragment>
