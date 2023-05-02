@@ -11,7 +11,7 @@ import NavBar from "../navBar/navBar";
 import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
 import "./home.css";
-import oldReliable from "../../oldReliable.jpg";
+import oldReliable from "../../oldReliable.webp";
 import Spinner from "../spinner/spinner";
 
 export class Home extends React.Component {

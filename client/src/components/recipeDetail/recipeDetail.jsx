@@ -6,8 +6,8 @@ import {
   cleanRecipeDetail,
 } from "../../redux/actions/actions";
 import "./recipeDetail.css";
-import recipeDetailbg from "../../recipeDetailbg.jpg";
-import oldReliable from "../../oldReliable.jpg";
+import recipeDetailbg from "../../recipeDetailbg.webp";
+import oldReliable from "../../oldReliable.webp";
 import Spinner from "../spinner/spinner";
 
 function RecipeDetail() {
