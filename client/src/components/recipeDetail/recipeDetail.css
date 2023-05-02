@@ -1,107 +1,104 @@
 .recipeDetail-wrap {
-    overflow: hidden;
-    position: relative;
+  overflow: hidden;
+  position: relative;
 }
 
 .recipeDetailbg {
-    opacity: 0.3;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100%;
 }
 
-.recipeDetail{
-    position: relative;
-    color: white;
+.recipeDetail {
+  position: relative;
+  color: white;
 }
 
-.recipeDetail_container{
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.494) ;
-    width: 80%;
-    margin-inline: auto;
-    margin-block: 2rem;
-    padding: 20px 40px 20px;
-    border-radius: 10px;
+.recipeDetail_container {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.494);
+  width: 80%;
+  margin-inline: auto;
+  margin-block: 2rem;
+  padding: 20px 40px 20px;
+  border-radius: 10px;
 }
 
-.recipeDetail_container h3{
-    margin: 0px 0px 0px;
-    padding: 0px 0px 10px;
-
+.recipeDetail_container h3 {
+  margin: 0px 0px 0px;
+  padding: 0px 0px 10px;
 }
 
-.recipeDetail_backButton{
-    position: absolute;
-    top: -65px; left: -30px;
-
+.recipeDetail_backButton {
+  position: absolute;
+  top: -65px;
+  left: -30px;
 }
 
-.recipeDetail_backButton button{
-    font-size: large;
+.recipeDetail_backButton button {
+  font-size: large;
 }
 
-.recipeDetail_title  {
-    text-align: center;
-    padding: 5px 0px 10px;
-    background-color: black;
-
+.recipeDetail_title {
+  text-align: center;
+  padding: 5px 0px 10px;
+  background-color: black;
 }
 
 .recipeDetail_title h1 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .recipeDetail_image {
-    height: 300px;
-    text-align: center;
+  height: 300px;
+  text-align: center;
 }
 
-.recipeDetail_image img{
-    height: 100%;
-    width: auto;
-    border-radius: 10px;
+.recipeDetail_image img {
+  height: 100%;
+  width: auto;
+  border-radius: 10px;
 }
 
-.recipeDetail_healthScore{
-    text-align: center;
-    font-style: oblique;
-    font-size: x-small;
+.recipeDetail_healthScore {
+  text-align: center;
+  font-style: oblique;
+  font-size: x-small;
 }
 
-.recipeDetail_diets{
-    text-align: left;
+.recipeDetail_diets {
+  text-align: left;
 }
 
-.recipeDetail_dishTypes{
-    text-align: left;
-    padding-top: 5px;
+.recipeDetail_dishTypes {
+  text-align: left;
+  padding-top: 5px;
 }
 
-.recipeDetail_summary{
-    text-align: left;
-    padding-top: 10px;
+.recipeDetail_summary {
+  text-align: left;
+  padding-top: 10px;
 }
 
-.recipeDetail_preparation{
-    text-align: left;
-    margin-top: 20px;
+.recipeDetail_preparation {
+  text-align: left;
+  margin-top: 20px;
 }
 
-.recipeDetail_preparation h2{
-    text-align: left;
-    margin: 0px 0px 0px;
-    text-decoration: underline;
+.recipeDetail_preparation h2 {
+  text-align: left;
+  margin: 0px 0px 0px;
+  text-decoration: underline;
 }
 
-.recipeDetail_steps{
-    text-align: left;
+.recipeDetail_steps {
+  text-align: left;
 }
 
-.recipeDetail_steps ul li{
-    padding-bottom: 5px;
-    list-style: decimal;
+.recipeDetail_steps ul li {
+  padding-bottom: 5px;
+  list-style: decimal;
 }
-
