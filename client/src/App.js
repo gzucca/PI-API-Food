@@ -1,28 +1,45 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import LandingPage from './components/landing/landing.jsx';
-import Home from './components/home/home.jsx';
-import CreateRecipe from './components/createRecipe/createRecipe.jsx';
-import RecipeDetail from './components/recipeDetail/recipeDetail.jsx';
-import './App.css'
+import LandingPage from "./components/landing/landing";
+import Home from "./components/home/home";
+import RecipeDetail from "./components/recipeDetail/recipeDetail.jsx";
+import createRecipeComp from "./components/createRecipeComp/createRecipeComp";
+import { useEffect, useState } from "react";
+import "./App.css";
+import Spinner from "./components/spinner/spinner";
 
 function App() {
+  const [playAnimation, setPlayAnimation] = useState(false);
+
+  useEffect(() => {
+    const onPageLoad = () => {
+      setPlayAnimation(true);
+    };
+
+    if (document.readyState === "complete") {
+      onPageLoad();
+    } else {
+      window.addEventListener("load", onPageLoad);
+    }
+    return () => window.removeEventListener("load", onPageLoad);
+  }, []);
+
   return (
-    <div>
+    <>
+      {playAnimation ? (
+        <React.Fragment>
+          <Route exact path="/" component={LandingPage} />
 
-      <React.Fragment>
+          <Route exact path="/home" component={Home} />
 
-        <Route exact path="/" component={LandingPage} />
+          <Route exact path="/createrecipe" component={createRecipeComp} />
 
-        <Route exact path="/home" component={Home} />
-
-        <Route exact path="/createrecipe" component={CreateRecipe} />
-
-        <Route exact path="/recipe/:id" component={RecipeDetail} />
-
-      </React.Fragment>
-
-    </div>
+          <Route exact path="/recipe/:id" component={RecipeDetail} />
+        </React.Fragment>
+      ) : (
+        <Spinner />
+      )}
+    </>
   );
 }
 

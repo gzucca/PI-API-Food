@@ -29,14 +29,14 @@ function NavBar() {
 
 
     return (
-        <div className='navBar-bg'>
+        <div className='navBar-container'>
             <h1>Home</h1>
             <div className='navBar'>
                 <Link to="/createRecipe">Create recipe</Link>
 
 
-                <form onSubmit={handleSubmit}>
-                    <div>
+                <form className='navBar__form' onSubmit={handleSubmit}>
+
                         <label >Search: </label>
                         <input
                         type="text"
@@ -45,8 +45,8 @@ function NavBar() {
                         value={recipeState.name}
                         onChange={handleInputChange}
                         />
-                    </div>
-                    <button type="submit" >🔎</button>
+                    <button type="submit" className='navBar__form__button' >🔎</button>
+                 
                 </form>
             </div>
         </div>
