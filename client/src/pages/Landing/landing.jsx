@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./landing.css";
+import "./Landing.css";
 
-const LandingPage = () => {
+export default function Landing() {
   return (
     <div className="landingPage">
       <Link to={`/home/`}>
@@ -13,4 +13,3 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;

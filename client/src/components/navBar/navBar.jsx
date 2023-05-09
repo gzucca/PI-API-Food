@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getRecipes } from '../../redux/actions/actions';
-import'./navBar.css'
+import { getRecipes } from '../../redux/actions';
+import'./Navbar.css'
 
 
-function NavBar() {
+export default function NavBar() {
 
     const [recipeState, setRecipeState] = useState({
         name: ''
@@ -46,7 +46,6 @@ function NavBar() {
                         onChange={handleInputChange}
                         />
                     <button type="submit" className='navBar__form__button' >🔎</button>
-                 
                 </form>
             </div>
         </div>
@@ -55,6 +54,3 @@ function NavBar() {
 
 }
 
-export default NavBar;
-
-// disabled={Object.keys(errors).length}

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import rootReducer from '../reducer/reducer.js';
+import rootReducer from '../reducer';
 // import logger from 'redux-logger'
 // import {createStore, applyMiddleware} from "redux";
 // import {composeWithDevTools} from 'redux-devtools-extension';

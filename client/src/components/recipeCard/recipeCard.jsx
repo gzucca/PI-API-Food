@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./recipeCard.css";
+import "./RecipeCard.css";
 
-function RecipeCard({ name, img, diets, id, dishTypes }) {
+export default function RecipeCard({ name, img, diets, id, dishTypes }) {
   let dietsNewArray = (diets) => {
     let newArray = [];
     for (let i = 0; i < diets.length; i++) {
@@ -65,5 +65,3 @@ function RecipeCard({ name, img, diets, id, dishTypes }) {
     </div>
   );
 }
-
-export default RecipeCard;

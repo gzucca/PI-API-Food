@@ -1,7 +1,7 @@
 import React from "react";
-import "./paginado.css";
+import "./Pagination.css";
 
-export default function Paginado({ cardsPerPage, recipes, paginado, currentPage }) {
+export default function Pagination({ cardsPerPage, recipes, paginado, currentPage }) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(recipes / cardsPerPage); i++) {

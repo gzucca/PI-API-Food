@@ -4,12 +4,12 @@ import {
   getAllDiets,
   createRecipe,
   getAllRecipes,
-} from "../../redux/actions/actions.js";
+} from "../../redux/actions";
 import { Link, useHistory } from "react-router-dom";
-import "./createRecipeComp.css";
-import createRecipebg from "../../createRecipebg.webp";
-import createRecipePreview from "../../createRecipePreview.webp";
-import Spinner from "../spinner/spinner.jsx";
+import Spinner from "../../components/Spinner";
+import createRecipePreview from "../../assets/createRecipePreview.webp";
+import createRecipebg from "../../assets/createRecipebg.webp";
+import "./CreateRecipe.css";
 
 function validate(newRecipe) {
   let errors = {};
@@ -42,7 +42,7 @@ function validate(newRecipe) {
   return errors;
 }
 
-export default function CreateRecipeComp() {
+export default function CreateRecipe() {
   const dispatch = useDispatch();
   const diets = useSelector((state) => state.diets);
   let history = useHistory();

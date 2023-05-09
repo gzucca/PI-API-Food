@@ -6,13 +6,13 @@ import {
   getAllRecipes,
   sortRecipes,
   loadAllRecipes,
-} from "../../redux/actions/actions";
-import NavBar from "../navBar/navBar";
-import Paginado from "../paginado/paginado";
-import RecipeCard from "../recipeCard/recipeCard";
-import "./home.css";
-import oldReliable from "../../oldReliable.webp";
-import Spinner from "../spinner/spinner";
+} from "../../redux/actions";
+import Navbar from "../../components/Navbar";
+import Pagination from "../../components/Pagination";
+import RecipeCard from "../../components/RecipeCard";
+import Spinner from "../../components/Spinner";
+import oldReliable from "../../assets/oldReliable.webp";
+import "./Home.css";
 
 export class Home extends React.Component {
   constructor(props) {
@@ -54,11 +54,9 @@ export class Home extends React.Component {
 
   async componentDidMount() {
     if (this.props.allRecipes.length === 0) {
-      console.log("Se cargaron todas las recetas");
       await this.props.getAllRecipes();
     }
     if (this.props.diets.length === 0) {
-      console.log("Se cargaron todas las dietas");
       await this.props.getAllDiets();
     }
     this.indexOfLastCard();
@@ -147,7 +145,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div className="home__background">
-        <NavBar />
+        <Navbar />
         <div className="home__container">
           <div className="filters__container">
             <button id="top" onClick={(e) => this.loadAllRecipes(e)}>
@@ -185,7 +183,7 @@ export class Home extends React.Component {
 
           <div className="pages__container">
             <button onClick={(e) => this.handlePrevious(e)}>Previous</button>
-            <Paginado
+            <Pagination
               cardsPerPage={this.state.cardsPerPage}
               recipes={this.props.recipes.length}
               paginado={this.paginado}
@@ -216,7 +214,7 @@ export class Home extends React.Component {
 
           <div className="pages__container">
             <button onClick={(e) => this.handlePrevious(e)}>Previous</button>
-            <Paginado
+            <Pagination
               cardsPerPage={this.state.cardsPerPage}
               recipes={this.props.recipes.length}
               paginado={this.paginado}
