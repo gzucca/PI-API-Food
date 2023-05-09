@@ -1,0 +1,52 @@
+.navBar-container {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-block: .5rem;
+}
+
+.navBar-container h1 {
+  width: fit-content;
+  margin: auto;
+}
+
+.navBar {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  font-size: larger;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-block: .5rem;
+}
+
+.navBar a {
+  color: white;
+}
+
+.navBar a:hover {
+  color: grey;
+}
+
+.navBar__form {
+  display: flex;
+  align-items: center;
+}
+
+.navBar__form input{
+  padding: 0;
+  resize: vertical;
+  float: right;
+  width: 100%;
+}
+
+.navBar__form__button {
+  height: fit-content;
+  font-size: 1rem;
+  border: 0;
+  margin: 0;
+  padding: .2em;
+  
+}

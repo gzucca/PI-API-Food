@@ -1,0 +1,72 @@
+:root {
+  --step--2: clamp(0.59rem, calc(0.59rem + 0.03vw), 0.61rem);
+  --step--1: clamp(0.67rem, calc(0.65rem + 0.11vw), 0.73rem);
+  --step-0: clamp(0.75rem, calc(0.71rem + 0.22vw), 0.88rem);
+  --step-1: clamp(0.84rem, calc(0.77rem + 0.36vw), 1.05rem);
+  --step-2: clamp(0.95rem, calc(0.84rem + 0.54vw), 1.26rem);
+  --step-3: clamp(1.07rem, calc(0.91rem + 0.77vw), 1.51rem);
+  --step-4: clamp(1.20rem, calc(0.99rem + 1.07vw), 1.81rem);
+  --step-5: clamp(1.35rem, calc(1.06rem + 1.44vw), 2.18rem);
+}
+
+.recipeCard {
+  background-color: rgba(95, 158, 160, 0.407);
+  border-radius: 15%;
+  border-width: 5px;
+  height: 100%;
+}
+
+.recipeCard:hover {
+  background-color: rgba(95, 158, 160, 0.52);
+  color: gray;
+  cursor: pointer;
+}
+
+.header h2 {
+  font-size: var(--step-2);
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  width: 85%;
+  margin-inline: auto;
+}
+
+.recipeCard h4 {
+  font-size: var(--step-0);
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.recipeCard h5 {
+  font-size: var(--step--1);
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  width: 90%;
+  margin-inline: auto;
+}
+
+.ImageContainer {
+  border-bottom-left-radius: 15%;
+  border-bottom-right-radius: 15%;
+  overflow: hidden;
+  height: 60%;
+  width: 100%;
+}
+
+.ImageContainer img {
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  
+}

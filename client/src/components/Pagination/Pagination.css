@@ -1,0 +1,26 @@
+.paginado__container{
+  margin-block: 1rem;
+}
+
+.paginado {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.paginadoPagina {
+    border : 0;
+    width: 30px;
+    height: 30px;
+}
+
+.paginaActual{
+    border : 0;
+    width: 30px;
+    height: 30px;
+    background-color: darkslategray;
+    color: white;
+}
