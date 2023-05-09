@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getRecipes } from '../../redux/actions/actions';
-import'./navBar.css'
+import { getRecipes } from '../../redux/actions';
+import'./Navbar.css'
 
 
 export default function NavBar() {

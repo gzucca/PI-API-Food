@@ -4,13 +4,13 @@ import { Link, useParams } from "react-router-dom";
 import {
   getRecipeDetail,
   cleanRecipeDetail,
-} from "../../redux/actions/actions";
-import "./recipeDetail.css";
-import recipeDetailbg from "../../recipeDetailbg.webp";
-import oldReliable from "../../oldReliable.webp";
-import Spinner from "../spinner/spinner";
+} from "../../redux/actions";
+import Spinner from "../../components/Spinner";
+import oldReliable from "../../assets/oldReliable.webp";
+import recipeDetailbg from "../../assets/recipeDetailbg.webp";
+import "./RecipeDetail.css";
 
-function RecipeDetail() {
+export default function RecipeDetail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const recipe = useSelector((state) => state.recipeDetail);
@@ -156,4 +156,3 @@ function RecipeDetail() {
   );
 }
 
-export default RecipeDetail;

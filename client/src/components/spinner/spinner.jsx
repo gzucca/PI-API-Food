@@ -1,7 +1,7 @@
 import React from "react";
-import './spinner.css';
+import './Spinner.css';
 
-function Spinner() {
+export default function Spinner() {
 
   return (
     <section className="talign-center">
@@ -11,5 +11,3 @@ function Spinner() {
   );
   
 }
-
-export default Spinner;
