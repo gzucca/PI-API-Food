@@ -54,11 +54,9 @@ export class Home extends React.Component {
 
   async componentDidMount() {
     if (this.props.allRecipes.length === 0) {
-      console.log("Se cargaron todas las recetas");
       await this.props.getAllRecipes();
     }
     if (this.props.diets.length === 0) {
-      console.log("Se cargaron todas las dietas");
       await this.props.getAllDiets();
     }
     this.indexOfLastCard();
