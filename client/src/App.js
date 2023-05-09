@@ -6,7 +6,7 @@ import RecipeDetail from "./components/recipeDetail/recipeDetail.jsx";
 import createRecipeComp from "./components/createRecipeComp/createRecipeComp";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Spinner from "./components/spinner/spinner";
+import Spinner from "./components/Spinner/spinner";
 
 function App() {
   const [playAnimation, setPlayAnimation] = useState(false);

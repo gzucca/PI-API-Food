@@ -6,8 +6,8 @@ import {
   getAllRecipes,
   sortRecipes,
   loadAllRecipes,
-} from "../../redux/actions/actions";
-import NavBar from "../navBar/navBar";
+} from "../../redux/actions";
+import Navbar from "../Navbar";
 import Paginado from "../paginado/paginado";
 import RecipeCard from "../recipeCard/recipeCard";
 import "./home.css";
@@ -145,7 +145,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div className="home__background">
-        <NavBar />
+        <Navbar />
         <div className="home__container">
           <div className="filters__container">
             <button id="top" onClick={(e) => this.loadAllRecipes(e)}>
