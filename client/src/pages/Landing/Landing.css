@@ -1,15 +1,49 @@
-.landingPage {
-  background: url("../../assets/clientBackground.webp");
-  background-size: cover;
+.background{
+  display: flex;
+  place-content: center;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.background-image {
+  object-fit: cover;
   height: 100vh;
   width: 100vw;
 }
 
-.landingPage h1 {
-  margin-top: 0px;
+.landing{
+  display: flex;
+  flex-direction: column;
+  place-items: center;
   position: absolute;
-  top: 30vh;
-  left: 40px;
-  background-color: white;
+  padding: 1rem 2rem;
+  color: white;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  background-color: rgba(8, 3, 3, 0.307) ;
+}
+
+.landing-title {
+  font-size: 2rem;
+}
+
+.landing-subtitle {
+  font-size: 1.1rem;
+  color: rgb(231, 231, 231);
+  font-style: italic;
+}
+
+.landing-btn {
+  font-size: 1rem;
+  margin-top: .3rem;
+  padding: .4em .6em;
   border-radius: 10px;
+  color: white;
+  background-color: rgba(112, 116, 56, 0.828);
+}
+
+.landing-btn:hover {
+  background-color: rgba(112, 116, 56, 0.233);
+  cursor: pointer;
 }
