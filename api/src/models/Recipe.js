@@ -1,11 +1,9 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const { DataTypes } = require("sequelize");
+
 module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('recipe', {
+  sequelize.define("recipe", {
     id: {
-      type: DataTypes.UUID, //generamos un ID único con valores random que no se van a repetir. Esto para que no se pise con la API
+      type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
@@ -21,10 +19,11 @@ module.exports = (sequelize) => {
     healthScore: {
       type: DataTypes.FLOAT,
       allowNull: true,
-      set(value){
-        if (typeof(value) === 'string') {
-        this.setDataValue('healthScore', null );
-      }}
+      set(value) {
+        if (typeof value === "string") {
+          this.setDataValue("healthScore", null);
+        }
+      },
     },
     dishTypes: {
       type: DataTypes.ARRAY(DataTypes.STRING),
@@ -42,6 +41,6 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
-    }
+    },
   });
 };

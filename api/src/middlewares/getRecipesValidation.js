@@ -1,4 +1,4 @@
-const  {ClientError} = require("../utils/errors");	
+const { ClientError } = require("../utils/errors");
 
 module.exports = (req, res, next) => {
   const { name } = req.body;

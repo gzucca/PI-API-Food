@@ -1,11 +1,12 @@
 const express = require("express");
 const { Recipe, Diet } = require("../db");
-const { getAllRecipes, getAllDiets } = require("../controllers");
 const controllers = require("../controllers");
 
 const router = express.Router();
 
 router.get("/recipes", controllers.getRecipes)
+
+router.get("/diets", controllers.getDiets)
 
 // router.get("/recipes", async (req, res) => {
 //   const { name } = req.query;
@@ -70,19 +71,19 @@ router.post("/recipes", async (req, res) => {
   }
 });
 
-router.get("/diets", async (req, res) => {
-  try {
-    const dietsInDB = await Diet.findAll();
-    if (dietsInDB.length < 10) {
-      const allDiets = await getAllDiets();
-      const showDiets = await Diet.bulkCreate(allDiets);
-      res.status(200).send(showDiets);
-    } else {
-      res.status(200).send(dietsInDB);
-    }
-  } catch (e) {
-    res.status(404).send(e.message);
-  }
-});
+// router.get("/diets", async (req, res) => {
+//   try {
+//     const dietsInDB = await Diet.findAll();
+//     if (dietsInDB.length < 10) {
+//       const allDiets = await getAllDiets();
+//       const showDiets = await Diet.bulkCreate(allDiets);
+//       res.status(200).send(showDiets);
+//     } else {
+//       res.status(200).send(dietsInDB);
+//     }
+//   } catch (e) {
+//     res.status(404).send(e.message);
+//   }
+// });
 
 module.exports = router;
