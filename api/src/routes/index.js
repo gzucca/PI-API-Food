@@ -1,31 +1,30 @@
 const express = require("express");
 const { Recipe, Diet } = require("../db");
-const { getAllRecipes, getAllDiets } = require("./controllers.js");
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const { getAllRecipes, getAllDiets } = require("../controllers");
+const controllers = require("../controllers");
 
 const router = express.Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-router.get("/recipes", async (req, res) => {
-  const { name } = req.query;
-  const allRecipes = await getAllRecipes();
-  try {
-    if (name) {
-      let recipes = allRecipes.filter((recip) =>
-        recip.name.toLowerCase().includes(name.toLowerCase())
-      );
-      recipes.length
-        ? res.status(200).send(recipes)
-        : res.status(404).send("No existe ninguna receta con ese nombre.");
-    } else {
-      res.status(200).send(allRecipes);
-    }
-  } catch (e) {
-    res.status(404).send("Error", e.message);
-  }
-});
+router.get("/recipes", controllers.getRecipes)
+
+// router.get("/recipes", async (req, res) => {
+//   const { name } = req.query;
+//   const allRecipes = await getAllRecipes();
+//   try {
+//     if (name) {
+//       let recipes = allRecipes.filter((recip) =>
+//         recip.name.toLowerCase().includes(name.toLowerCase())
+//       );
+//       recipes.length
+//         ? res.status(200).send(recipes)
+//         : res.status(404).send("No existe ninguna receta con ese nombre.");
+//     } else {
+//       res.status(200).send(allRecipes);
+//     }
+//   } catch (e) {
+//     res.status(404).send("Error", e.message);
+//   }
+// });
 
 router.get("/recipes/:id", async (req, res) => {
   let { id } = req.params;
