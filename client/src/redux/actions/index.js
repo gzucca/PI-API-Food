@@ -9,12 +9,11 @@ export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:5000";
-console.log(axios.defaults.baseURL);
 
 export const getAllRecipes = () => {
   return async function (dispatch) {
     try {
-      const { res } = await axios.get("/recipes");
+      const res = await axios.get("/recipes");
       return dispatch({ type: GET_ALL_RECIPES, payload: res.data.data });
     } catch (err) {
       console.log("Could not get recipes", err);
