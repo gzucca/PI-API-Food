@@ -40,6 +40,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_ALL_DIETS:
+      console.log(action.payload);
       return {
         ...state,
         diets: action.payload,
