@@ -1,3 +1,4 @@
+const fetch = require("node-fetch"); //!only neccessary for node prior to 18
 const { API_KEY } = process.env;
 const { Recipe, Diet } = require("../db");
 
