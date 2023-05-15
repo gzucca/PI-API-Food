@@ -15,7 +15,7 @@ export const getAllRecipes = () => {
   return async function (dispatch) {
     try {
       const { res } = await axios.get("/recipes");
-      return dispatch({ type: GET_ALL_RECIPES, payload: res.data.data });
+      return dispatch({ type: GET_ALL_RECIPES, payload: res.data });
     } catch (err) {
       console.log("Could not get recipes", err);
     }
@@ -41,7 +41,7 @@ export const getAllDiets = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get("/diets");
-      return dispatch({ type: GET_ALL_DIETS, payload: res.data.data });
+      return dispatch({ type: GET_ALL_DIETS, payload: res.data });
     } catch (err) {
       console.log("Could not get diets", err);
     }
@@ -52,7 +52,7 @@ export const getRecipeDetail = (id) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`/recipes/${id}`);
-      return dispatch({ type: GET_RECIPE_DETAIL, payload: res.data.data });
+      return dispatch({ type: GET_RECIPE_DETAIL, payload: res.data });
     } catch (err) {
       console.log("Could not get recipes with given ID", err);
     }
