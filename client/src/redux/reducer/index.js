@@ -34,6 +34,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_RECIPES:
+      console.log(action.payload);
       return {
         ...state,
         recipes: action.payload,
