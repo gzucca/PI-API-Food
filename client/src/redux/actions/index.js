@@ -8,16 +8,15 @@ export const SORT_RECIPES = "SORT_RECIPES";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_RECIPE_DETAIL = "GET_RECIPE_DETAIL";
 
-axios.defaults.baseURL = process.env.REACT_APP_API;
+axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:5000";
 
 export const getAllRecipes = () => {
   return async function (dispatch) {
     try {
-      const res = await axios.get("/recipes");
-      return dispatch({ type: GET_ALL_RECIPES, payload: res.data });
-    } catch (error) {
-      alert("No se pudieron descargar recetas");
-      console.log(error);
+      const { res } = await axios.get("/recipes");
+      return dispatch({ type: GET_ALL_RECIPES, payload: res.data.data });
+    } catch (err) {
+      console.log("Could not get recipes", err);
     }
   };
 };
@@ -31,9 +30,8 @@ export const getRecipes = (name) => {
     try {
       const res = await axios.get(`/recipes?name=${name}`);
       return dispatch({ type: GET_RECIPES, payload: res.data });
-    } catch (error) {
-      alert("No se pudieron encontrar recetas para esa búsqueda.");
-      console.log(error);
+    } catch (err) {
+      console.log("Could not get recipes with given search parameters", err);
     }
   };
 };
@@ -42,10 +40,9 @@ export const getAllDiets = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get("/diets");
-      return dispatch({ type: GET_ALL_DIETS, payload: res.data });
-    } catch (error) {
-      alert("No se pudieron descargar las dietas");
-      console.log(error);
+      return dispatch({ type: GET_ALL_DIETS, payload: res.data.data });
+    } catch (err) {
+      console.log("Could not get diets", err);
     }
   };
 };
@@ -54,10 +51,9 @@ export const getRecipeDetail = (id) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`/recipes/${id}`);
-      return dispatch({ type: GET_RECIPE_DETAIL, payload: res.data });
-    } catch (error) {
-      alert("No se pudieron encontrar recetas con ese ID");
-      console.log(error);
+      return dispatch({ type: GET_RECIPE_DETAIL, payload: res.data.data });
+    } catch (err) {
+      console.log("Could not get recipes with given ID", err);
     }
   };
 };
@@ -79,9 +75,8 @@ export const createRecipe = (payload) => {
     try {
       const res = await axios.post("recipes", payload);
       return res;
-    } catch (error) {
-      alert("No se pudo crear la receta");
-      console.log(error);
+    } catch (err) {
+      console.log("Could not create recipe", err);
     }
   };
 };
