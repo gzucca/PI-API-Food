@@ -1,3 +1,3 @@
 module.exports = {
-  getRecipesValidation: require("./getRecipesValidation"),
+  postRecipeValidation: require("./postRecipeValidation"),
 };

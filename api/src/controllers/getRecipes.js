@@ -1,5 +1,6 @@
 const recipes = require("../data");
 const { response } = require("../utils");
+const { ClientError } = require("../utils/errors");
 
 module.exports = async (req, res) => {
   const { name } = req.query;
@@ -8,7 +9,8 @@ module.exports = async (req, res) => {
     filteredRecipeList = recipesList.filter((r) =>
       r.name.toLowerCase().includes(name.toLowerCase())
     );
-    response(res, 200, filteredRecipeList);
+    if (filteredRecipeList.length) response(res, 200, filteredRecipeList);
+    else throw new ClientError("No recipe found with given name", 404);
   }
   response(res, 200, recipesList);
 };

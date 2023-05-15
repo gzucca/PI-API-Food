@@ -8,7 +8,7 @@ export default function Landing() {
   return (
     <main className="background">
       <picture>
-        <source media="(max-width:800px)" srcset={BackgroundMobile} />
+        <source media="(max-width:800px)" srcSet={BackgroundMobile} />
         <img
           className="background-image"
           loading="eager"
