@@ -1,4 +1,3 @@
-const recipes = require("../data");
 const { response } = require("../utils");
 const { Recipe, Diet } = require("../db");
 
