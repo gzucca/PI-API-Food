@@ -39,6 +39,10 @@ img, picture, video, canvas, svg {
 */
 input, button, textarea, select {
   font: inherit;
+  background-color: #8fb4ff;
+  border-width: 0px;
+  padding: .4em .8em;
+  border-radius: 2%;
 }
 /*
   8. Avoid text overflows

@@ -1,6 +1,7 @@
 .createRecipe-wrap {
   overflow: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
 .createRecipebg {
@@ -17,6 +18,8 @@
   position: relative;
   color: black;
   font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.700);
+  min-height: 100vh;
 }
 
 .createRecipe textarea {
@@ -68,8 +71,6 @@
   position: relative;
   top: 10px;
   left: 20px;
-  height: 30px;
-  width: 80px;
   font-size: large;
 }
 

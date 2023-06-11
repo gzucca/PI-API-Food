@@ -22,24 +22,27 @@
   padding-block: .5rem;
 }
 
-.navBar a {
+.navBar__createRecipe {
   color: white;
 }
 
-.navBar a:hover {
+.navBar__createRecipe:hover {
   color: grey;
 }
 
 .navBar__form {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
 }
 
 .navBar__form input{
   padding: 0;
   resize: vertical;
   float: right;
-  width: 100%;
+  width: 50%;
+  margin-inline: 4px;
 }
 
 .navBar__form__button {
@@ -49,4 +52,11 @@
   margin: 0;
   padding: .2em;
   
+}
+
+
+@media screen and (width > 720px) {
+  .navBar__form input{
+    width: 100%;
+  }
 }

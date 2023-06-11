@@ -48,7 +48,7 @@ export default function RecipeCard({ name, img, diets, id, dishTypes }) {
         })}
       </h4>
 
-      {dishTypes.length && (
+      {dishTypes.length > 0 && (
         <h5>
           {" "}
           {dishTypesNewArray(dishTypes).map((e) => {

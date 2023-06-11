@@ -10,10 +10,11 @@
 }
 
 .recipeCard {
-  background-color: rgba(95, 158, 160, 0.407);
-  border-radius: 15%;
-  border-width: 5px;
-  height: 100%;
+  background-color: #ebf1ff;
+  border-radius: 5%;
+
+  width: 80%;
+  margin-inline: auto;
 }
 
 .recipeCard:hover {
@@ -26,11 +27,16 @@
   font-size: var(--step-2);
   height: 20%;
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   line-height: normal;
   width: 85%;
   margin-inline: auto;
+}
+
+.header {
+  color: black;
 }
 
 .recipeCard h4 {
@@ -56,8 +62,8 @@
 }
 
 .ImageContainer {
-  border-bottom-left-radius: 15%;
-  border-bottom-right-radius: 15%;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
   overflow: hidden;
   height: 60%;
   width: 100%;
@@ -69,4 +75,12 @@
   width: 100%;
   object-fit: cover;
   
+}
+
+
+@media screen and (width > 720px) {
+  .recipeCard {
+    width: 100%;
+    
+  }
 }

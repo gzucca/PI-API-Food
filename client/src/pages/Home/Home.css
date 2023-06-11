@@ -1,5 +1,16 @@
-.home__background{
-  background: linear-gradient(90deg, rgba(126,87,47,1) 0%, rgba(196,186,121,1) 20%, rgba(196,186,121,1) 80%, rgba(126,87,47,1) 100%);
+:root {
+  --step--2: clamp(0.59rem, calc(0.59rem + 0.03vw), 0.61rem);
+  --step--1: clamp(0.67rem, calc(0.65rem + 0.11vw), 0.73rem);
+  --step-0: clamp(0.75rem, calc(0.71rem + 0.22vw), 0.88rem);
+  --step-1: clamp(0.84rem, calc(0.77rem + 0.36vw), 1.05rem);
+  --step-2: clamp(0.95rem, calc(0.84rem + 0.54vw), 1.26rem);
+  --step-3: clamp(1.07rem, calc(0.91rem + 0.77vw), 1.51rem);
+  --step-4: clamp(1.2rem, calc(0.99rem + 1.07vw), 1.81rem);
+  --step-5: clamp(1.35rem, calc(1.06rem + 1.44vw), 2.18rem);
+}
+
+.home__background {
+  background: #ffffff;
   min-height: 100vh;
 }
 
@@ -7,15 +18,16 @@
   max-width: 1200px;
   margin: auto;
   padding-block: 2rem;
-
 }
 
 .filters__container {
   display: flex;
-  width: fit-content;
+  justify-content: space-between;
+  padding-inline: 8px;
   gap: 1rem;
   margin: auto;
-
+  align-items: center;
+  font-size: var(--step-0);
 }
 
 .filters__filterDiets {
@@ -33,10 +45,10 @@
 
 .pages__container {
   display: flex;
-  width: fit-content;
+  justify-content: space-between;
+  padding-inline: 0.5rem;
   align-items: center;
-  margin: auto;
-  gap: 2rem;
+  margin-inline: auto;
 }
 
 .homeCards {
@@ -46,17 +58,21 @@
   gap: 1rem;
   row-gap: 2rem;
   margin-inline: auto;
-  grid-template-columns: repeat(
-      auto-fill,
-      minmax(
-          min(20rem, 100%),
-          1fr
-      )
-  );
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   grid-auto-rows: 24rem;
 }
 
 .backToTop {
   margin: auto;
   width: fit-content;
+}
+
+@media screen and (width > 720px) {
+  .pages__container {
+    width: 35vw;
+  }
+
+  .filters__container {
+    width: 35vw;
+  }
 }

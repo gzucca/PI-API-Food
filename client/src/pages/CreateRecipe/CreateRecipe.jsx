@@ -401,8 +401,8 @@ export default function CreateRecipe() {
 
                 <div className="divider"></div>
 
-                <div className="previewName">
-                  <h1>{newRecipe.name ? newRecipe.name : "Título"}</h1>
+                <div >
+                  <h1 className="previewName">{newRecipe.name ? newRecipe.name : "Título de tu receta"}</h1>
                 </div>
 
                 <div className="previewImage">
